@@ -10,9 +10,9 @@
             margin: 0;
             padding: 0;
             background-color: white;
-            color: whitesmoke;
+            color: #333;
             display: flex;
-            flex-direction:  column;
+            flex-direction: column;
             min-height: 100vh;
         }
 
@@ -57,23 +57,24 @@
                     background-color: #d4d4d4;
                 }
 
-        .gallery {
-            display: none;
-            text-align: center;
+        .gallery-container {
+            display: flex;
+            overflow-x: auto;
             padding: 20px;
-            flex-grow: 1;
+            gap: 20px;
+            display: none;
+            scroll-snap-type: x mandatory;
         }
 
-            .gallery img {
-                width: 100%;
-                max-width: 300px;
-                margin: 10px;
+            .gallery-container img {
+                width: 250px;
                 border-radius: 10px;
                 cursor: pointer;
                 transition: transform 0.3s;
+                scroll-snap-align: start;
             }
 
-                .gallery img:hover {
+                .gallery-container img:hover {
                     transform: scale(1.05);
                 }
 
@@ -90,11 +91,25 @@
             z-index: 1000;
         }
 
-            .overlay img {
-                max-width: 90%;
-                max-height: 90%;
-                border-radius: 8px;
-            }
+        .overlay-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .overlay img {
+            max-width: 70%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .overlay p {
+            font-size: 16px;
+            max-width: 300px;
+            color: white;
+            margin-left: 20px;
+        }
 
         .overlay-close {
             position: absolute;
@@ -108,10 +123,24 @@
         footer {
             text-align: center;
             font-size: 12px;
-            font-family:'Felix Titling';
+            font-family: 'Felix Titling';
             background-color: darkcyan;
             color: white;
             margin-top: auto;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .overlay-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .overlay p {
+                max-width: none;
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -134,34 +163,38 @@
         <span onclick="showGallery(11)">Vaira oosi design</span>
     </div>
 
-    <div id="gallery1" class="gallery">
+    <div class="gallery-container" id="gallery1">
         <h1>Boomika Sarees</h1>
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0215.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0216.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0217.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0218.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0219.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0220.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0221.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0222.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0223.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0224.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src)">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src, 'Boomika Sarees - These are premium soft silk sarees with intricate designs.')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src, 'Boomika Sarees - These are premium soft silk sarees with intricate designs.')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src, 'Boomika Sarees - These are premium soft silk sarees with intricate designs.')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0215.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0216.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0217.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0218.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0219.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0220.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0221.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0222.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0223.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0224.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
     </div>
 
-    <div id="gallery2" class="gallery">
-        <h1>Kubera Pattu 🎉</h1>
-        <img src="Images/Link 2-1.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Link 2-2.jpg" onclick="openZoom(this.src)">
-        <img src="Images/Link 2-6.jpg" onclick="openZoom(this.src)">
+    <div class="gallery-container" id="gallery2">
+        <h1>Full Work Soft Silk Sarees</h1>
+        <img src="Images/Link 2-1.jpg" onclick="openZoom(this.src, 'Full work soft silk sarees perfect for special occasions.')">
+        <img src="Images/Link 2-2.jpg" onclick="openZoom(this.src, 'Full work soft silk sarees perfect for special occasions.')">
+        <img src="Images/Link 2-6.jpg" onclick="openZoom(this.src, 'Full work soft silk sarees perfect for special occasions.')">
     </div>
 
+    <!-- Zoom Overlay -->
     <div class="overlay" id="imageOverlay">
         <span class="overlay-close" onclick="closeZoom()">&times;</span>
-        <img id="zoomedImage" src="" alt="Zoomed Image">
+        <div class="overlay-content">
+            <img id="zoomedImage" src="" alt="Zoomed Image">
+            <p id="imageText">Product description will appear here.</p>
+        </div>
     </div>
 
     <footer>
@@ -170,20 +203,26 @@
 
     <script>
         function showGallery(id) {
-            document.querySelectorAll('.gallery').forEach(gallery => {
+            // Hide all galleries
+            document.querySelectorAll('.gallery-container').forEach(gallery => {
                 gallery.style.display = 'none';
             });
-            document.getElementById('gallery' + id).style.display = 'block';
+            // Show the selected gallery
+            document.getElementById('gallery' + id).style.display = 'flex';
         }
 
-        function openZoom(src) {
+        function openZoom(src, description) {
             document.getElementById('zoomedImage').src = src;
+            document.getElementById('imageText').textContent = description;
             document.getElementById('imageOverlay').style.display = 'flex';
         }
 
         function closeZoom() {
             document.getElementById('imageOverlay').style.display = 'none';
         }
+
+        // Initially, show the first gallery
+        showGallery(1);
     </script>
 </body>
 </html>
