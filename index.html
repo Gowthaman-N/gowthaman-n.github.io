@@ -11,7 +11,7 @@
             padding: 0;
             background-color: white;
             color: #333;
-            display: flex;
+            display: block;
             flex-direction: column;
             min-height: 100vh;
         }
@@ -19,6 +19,9 @@
         header {
             text-align: center;
             padding: 0;
+            --header-height: 1000px;
+            position:relative;
+            display:block;
         }
 
             header img {
@@ -30,17 +33,17 @@
         .categories {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            text-align: center;
+            justify-content:center;
+            text-align:center;
             margin-top: 5px;
-            gap: 5px;
-            padding: 5px;
+            gap: 25px;
+            padding: 25px;
         }
 
             .categories span {
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: bold;
-                color: teal;
+                color: ThreeDDarkShadow;
                 cursor: pointer;
                 padding: 8px;
                 background-color: #e0e0e0;
@@ -59,28 +62,35 @@
 
         .gallery-container {
             display: flex;
-            overflow-x: auto;
+            flex-direction: column;
+            overflow-y: auto;
+            max-height:400px;
             padding: 20px;
+            align-items:center;
+            text-align:center;
             gap: 20px;
             display: none;
-            scroll-snap-type: x mandatory;
+            justify-content:flex-start;
+            scroll-snap-type: y mandatory;
         }
 
             .gallery-container img {
-                width: 250px;
-                border-radius: 10px;
+                width: 400px;
+                border-radius: 20px;
                 cursor: pointer;
                 transition: transform 0.3s;
+                text-align:center;
                 scroll-snap-align: start;
             }
 
-                .gallery-container img:hover {
+                .gallery-container img:hover
+                {
                     transform: scale(1.05);
                 }
 
         .overlay {
             position: fixed;
-            top: 0;
+            top: 5px;
             left: 0;
             width: 100%;
             height: 100%;
@@ -93,6 +103,7 @@
 
         .overlay-content {
             display: flex;
+            flex-direction:column;
             justify-content: center;
             align-items: center;
             gap: 20px;
@@ -100,48 +111,124 @@
 
         .overlay img {
             max-width: 70%;
-            max-height: 80%;
+            max-height: 70%;
+            align-items:center;
             border-radius: 10px;
         }
 
         .overlay p {
             font-size: 16px;
-            max-width: 300px;
+            max-width: 200px;
             color: white;
-            margin-left: 20px;
+            text-align:center;
+            align-content:center;
+            justify-content:normal;
+            margin-left: 10px;
         }
 
         .overlay-close {
-            position: absolute;
+            
             top: 20px;
             right: 30px;
-            color: white;
+            color: brown;
+            border:unset;
+            padding:10px 20px;
+            border-radius:5px;
             font-size: 30px;
-            cursor: pointer;
+            font-family:'Bell MT';
+            font-weight:bold;
+            cursor: pointer;                       
         }
+            .overlay-close:hover 
+            {
+                background-color: rgba(0, 0, 0, 0.7); /* Darker background on hover */
+            }
 
         footer {
+           
+            left:0;
+            bottom:0;
+            width:100%;
             text-align: center;
-            font-size: 12px;
+            justify-content:center;
+            font-size: 16px;
             font-family: 'Felix Titling';
+            display:block;
             background-color: darkcyan;
             color: white;
             margin-top: auto;
-            padding: 10px;
+            padding: 15px;
+        }
+        #text-container { 
+            overflow: hidden;
+            white-space: pre-wrap; /* Important for preserving newlines */
+            word-break: break-word; /* Allow words to break */
         }
 
-        @media (max-width: 768px) {
+            #text-container span
+            {
+                display: inline-block;
+                opacity: 0;
+                transition: opacity 0.2s ease, transform 0.2s ease;
+                transform: translateY(20px);
+            }
+
+            #text-container.reveal span
+            {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        @media (max-width: 800px) {
             .overlay-content {
+                display:flex;
                 flex-direction: column;
                 align-items: center;
+
             }
 
             .overlay p {
                 max-width: none;
                 margin-left: 0;
                 margin-top: 10px;
+                text-align:center;
             }
         }
+        .menu-icon {
+            position:fixed;
+            top: 123px;            
+            left: 10px; /* Adjust position as needed */
+            cursor: pointer;
+            z-index: 1001; /* Ensure it's above other elements */
+            font-size: 24px; /* Size of the icon (adjust as needed) */
+        }
+
+        .menu {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 123px; /* Adjust based on menu icon position */
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1002; /* Above the menu icon */
+        }
+
+            .menu a {
+                display: block; /* Each link on a new line */
+                color: white;
+                text-decoration: none;
+                padding: 5px;
+            }
+
+                .menu a:hover {
+                    background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+                }
+
+            .menu.show {
+                display: block; /* Show the menu when the class is present */
+            }
     </style>
 </head>
 <body>
@@ -150,79 +237,468 @@
     </header>
 
     <div class="categories">
-        <span onclick="showGallery(1)">Boomika Sarees</span>
-        <span onclick="showGallery(2)">Full work soft silk sarees</span>
-        <span onclick="showGallery(3)">Semi Kancheepuram silk sarees</span>
-        <span onclick="showGallery(4)">Luxury soft silk sarees</span>
-        <span onclick="showGallery(5)">New Soft check silk sarees</span>
-        <span onclick="showGallery(6)">Premium & royal soft silk sarees</span>
-        <span onclick="showGallery(7)">Premium Double Warp-kanji sarees</span>
-        <span onclick="showGallery(8)">Rich Cotton Saree</span>
-        <span onclick="showGallery(9)">Soft silk saree- Affordable price</span>
-        <span onclick="showGallery(10)">Two Work sarees</span>
-        <span onclick="showGallery(11)">Vaira oosi design</span>
+        <span onclick="showGallery(1,this)">Boomika Sarees</span>
+        <span onclick="showGallery(2,this)">Full work soft silk sarees</span>
+        <span onclick="showGallery(3,this)">Semi Kancheepuram silk sarees</span>
+        <span onclick="showGallery(4,this)">Luxury soft silk sarees</span>
+        <span onclick="showGallery(5,this)">New Soft check silk sarees</span>
+        <span onclick="showGallery(6,this)">Premium & royal soft silk sarees</span>
+        <span onclick="showGallery(7,this)">Premium Double Warp-kanji sarees</span>
+        <span onclick="showGallery(8,this)">Rich Cotton Saree</span>
+        <span onclick="showGallery(9,this)">Soft silk saree- Affordable price</span>
+        <span onclick="showGallery(10,this)">Two Work sarees</span>
+        <span onclick="showGallery(11,this)">Vaira oosi design</span>
     </div>
 
     <div class="gallery-container" id="gallery1">
         <h1>Boomika Sarees</h1>
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src, 'Boomika Sarees - These are premium soft silk sarees with intricate designs.')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src, 'Boomika Sarees - These are premium soft silk sarees with intricate designs.')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src, 'Boomika Sarees - These are premium soft silk sarees with intricate designs.')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0215.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0216.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0217.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0218.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0219.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0220.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0221.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0222.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0223.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0224.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src, 'Boomika Sarees')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0215.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0216.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0217.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0218.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0219.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0220.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0221.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0222.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0223.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0224.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
+        <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src, '🌟 Boomika Saree: Silk based most affordable Sarees 💫 Introducing a stunning new saree with a monochrome base and a striking contrast border.Featuring fully pastel colours, Priced at just ₹499 and shipping 🪂🪂🪂🪂🪂🪂🪂🪂.This limited-edition piece boasts a stylish contrast pallu.; stocks are limited 🤩Request a photo or video to see the exquisite design. 💃')">
     </div>
 
     <div class="gallery-container" id="gallery2">
         <h1>Full Work Soft Silk Sarees</h1>
-        <img src="Images/Link 2-1.jpg" onclick="openZoom(this.src, 'Full work soft silk sarees perfect for special occasions.')">
-        <img src="Images/Link 2-2.jpg" onclick="openZoom(this.src, 'Full work soft silk sarees perfect for special occasions.')">
-        <img src="Images/Link 2-6.jpg" onclick="openZoom(this.src, 'Full work soft silk sarees perfect for special occasions.')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0180.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0181.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0182.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0183.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0184.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0185.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0186.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0187.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0188.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0189.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0190.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0191.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0192.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0193.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0194.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0195.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0196.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0197.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0198.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0199.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
+        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0200.jpg" onclick="openZoom(this.src, '💜 Full work SOFT SILK  SAREES 💜 Fine art silk quality, soft silk material💜 Rich pallu & blouse with contrast💜 Small Zari work motif 💜 Copper zari worked, smooth feel💜 Special Price: Rs 900 + shipping💜 Comfortable, lightweight, breathable, durable, versatile💜 Ideal for festivals, weddings, parties, casual drapes beautifully💜Soft Silk Sarees💜 100%  soft silk')">
     </div>
 
-    <!-- Zoom Overlay -->
-    <div class="overlay" id="imageOverlay">
-        <span class="overlay-close" onclick="closeZoom()">&times;</span>
-        <div class="overlay-content">
-            <img id="zoomedImage" src="" alt="Zoomed Image">
-            <p id="imageText">Product description will appear here.</p>
+    <div class="gallery-container" id="gallery3">
+        <h1>Semi Kancheepuram Silk Sarees</h1>
+        <img src="Images/Kancheepuram Sarees/Saree1.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/saree2.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree3.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree4.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree5.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree6.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree7.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree8.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree9.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree10.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree11.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree12.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree13.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree14.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree15.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree16.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+        <img src="Images/Kancheepuram Sarees/Saree17.jpg" onclick="openZoom(this.src, 'Semi Kanchipuram Silk Sarees powerloom💜Exclusive Bridal Pattern💜Pure Silk based Hologram design💜With Best Complimentary Premium box packing For Saree.💜For orginal image or video of saree message us💜Rate: 2000')">
+    </div>
+
+    <div class="gallery-container" id="gallery4">
+        <h1>Luxury soft silk sarees</h1>
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0010.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0011.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0012.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0013.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0014.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0015.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0016.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0017.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0018.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0019.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0020.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0021.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0022.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0023.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0024.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0025.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0026.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0027.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0028.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0029.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0030.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0031.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0032.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0033.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0034.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0036.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0037.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0038.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0039.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0040.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0041.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0042.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+        <img src="Images/Luxury soft silks/IMG-20250126-WA0043.jpg" onclick="openZoom(this.src, '✨LUXURY SOFT SILK ✨Pure Mix soft silk sarees✨ Double warp & luxury silk yarn mixed✨ Rich pallu with contrast blouse✨ All over putta work saree✨Design border✨1st quality pure pattu saree collection type🎗 SPECIAL PRICE 1450+shippingNOTE👉🏻 Dry wash only#PURE PATTU SOFT SILK Double tone look✨MARKET PRICE 8000+✨✨✨✨✨✨')">
+    </div>
+
+    <div class="gallery-container" id="gallery5">
+        <h1>New Soft check silk sarees</h1>
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0201.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0202.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0203.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0204.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0205.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0206.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0207.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0208.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0209.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0210.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0211.jpg" onclick="openZoom(this.src, '🌻New Soft check Silk Sarees 🌻📍Art Silk in checked📍Fully Motif Work 📍Full Body stone📍High-Quality Materials 📍Soft and Comfortable Fabric Ensures All-Day Comfort👉 Price: Rs 890 + Shipping ,For original images, please message us!')">
+    </div>
+
+    <div class="gallery-container" id="gallery6">
+        <h1>Premium & royal soft silk sarees</h1>
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0124.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0125.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0126.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0127.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0128.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0129.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0130.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0131.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0132.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0133.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0134.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0135.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0136.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0137.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0138.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0139.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0140.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0141.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0142.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0143.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0144.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0145.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0146.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0147.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0148.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0149.jpg" onclick="openZoom(this.src, 'Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur.👗😍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work👗Pairs with contrast  blouse 🧶video will give for enquiries/Price: 900 free shipping*Ready stock-A exclusive boutique collection ®')">
+    </div>
+
+    <div class="gallery-container" id="gallery7">
+        <h1>Premium Double Warp-kanji sarees</h1>
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0079.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0080.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0081.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0082.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0083.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0084.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0085.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0086.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0087.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0088.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0089.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0090.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0091.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0092.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0093.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0094.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0095.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0096.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0097.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0098.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0099.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0100.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0101.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0102.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0103.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0104.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0105.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0106.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0107.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0108.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0109.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0110.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0111.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0112.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0113.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0114.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0115.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0116.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0117.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0118.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0119.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0120.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00121.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00122.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00123.jpg" onclick="openZoom(this.src, '🤍Premium Double Warp,Semi kanchipuram Sarees🤍🤍🤍Handloom type made🤍Soft silk🤍Two jari work saree🤍copper Jari🤍Meena Work🤍 Export Quality🤍🤍Special Sale :2000 Rs-Shipping extra🤍')">
+    </div>
+
+    <div class="gallery-container" id="gallery8">
+        <h1>Rich Cotton Saree</h1>
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0172.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0173.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0174.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0175.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0176.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0177.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0178.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0179.jpg" onclick="openZoom(this.src, 'My best Saree Ever💛Rich Cotton Saree🩷❤🩵💜 Power loom🩷 Kotta cotton❤ Rich pallu🧡 1St Quality 💛 Contrast border💚 Contrast Blouse💙 Export Quality 🩷❤🩵🖤🩶🤍Best Price ever : 899  Rs~ And Shipping🩷❤🧡💚🩵')">
+    </div>
+
+    <div class="gallery-container" id="gallery9">
+        <h1>Soft silk saree- Affordable price</h1>
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0226.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0227.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0228.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0229.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0230.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0231.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0232.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0233.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0234.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0235.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0236.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0237.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0238.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0239.jpg" onclick="openZoom(this.src, '🦚🦚🍁Soft Silk Saree🍁Art silk weaving 🍁Pure motif 🍁Pink copper jari🍁Jacquard Border🍁 Watt Butta saree🦚Our Price  550 Rs and ship🍁🍁Golden Oppertunity')">
+    </div>
+
+    <div class="gallery-container" id="gallery10">
+        <h1>Two Work sarees</h1>
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0045.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0046.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0047.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0048.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0049.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0050.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0051.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0052.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0053.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0054.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0055.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0056.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0057.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0058.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0059.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0060.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0061.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0062.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0063.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0064.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0065.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0066.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0067.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0068.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0069.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0070.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0071.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0072.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0073.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0074.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0075.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0076.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0077.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+        <img src="Images/Two Work Sarees/IMG-20250126-WA0078.jpg" onclick="openZoom(this.src, '🧶🧶Two work saree🧶 Half and half model 🧶one design, Colour 🧶Two design Two colours in single sareee 🍁Bridal Silk Saree🍁Art silk weaving 🍁Arni Made🧶Fully processed 🍁gold, copper jari🍁two weave 🍇Blouse and contrast pallu🧶🧶Best Price : 899 Rs And shipping 🧶🧶')">
+    </div>
+
+    <div class="gallery-container" id="gallery11">
+        <h1>Vaira oosi design</h1>
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0150.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0151.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0152.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0153.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0154.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0155.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0156.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0157.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0158.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0159.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0160.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0161.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0162.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0163.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0164.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0165.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0166.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0167.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0168.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0169.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0170.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+        <img src="Images/Vaira oosi design/IMG-20250126-WA0171.jpg" onclick="openZoom(this.src, 'Limited Edition Trending Vaira Oosi Design 🩷🖤🩶💜 Luxurious soft silk saree 🩷 Vibrant Motifs❤ Rich pallu🧡 1St Quality 💛 Fine quality zari💚 Contrast Blouse🩵 1/2 Warp Saree 💙 Export Quality 🧡 Perfect for Wedding Season🩷❤🧡💛💚🩵💙🖤🩶🤍🤎Offer 950 rs And  Shipping 🩷❤🧡🤍')">
+    </div>
+
+        <!-- Zoom Overlay -->
+        <div class="overlay" id="imageOverlay">
+            <div class="overlay-content">
+                <img id="zoomedImage" src="" alt="Zoomed Image">
+                <p id="imageText">Product description will appear here.</p>
+                <button class="overlay-close" onclick="closeZoom()">Close</button>
+            </div>
         </div>
-    </div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>  <div class="menu" id="myMenu">
+            <a href="#" onclick="showHomeScreen()">Home</a>
+        </div>
 
-    <footer>
-        <p>&copy; Select Your Sarees and Call or WhatsApp to 9789056621. We will show you a sample product of the similar or same item @your doorstep!</p>
-    </footer>
+        <footer>
+            <p>&copy; Select Your Sarees and Call or WhatsApp to 9789056621. We will show you a sample product of the similar or same item @your doorstep!</p>
+        </footer>
 
-    <script>
-        function showGallery(id) {
-            // Hide all galleries
-            document.querySelectorAll('.gallery-container').forEach(gallery => {
-                gallery.style.display = 'none';
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Initially hide all galleries, but NOT the spans
+                document.querySelectorAll('.gallery-container').forEach(gallery => {
+                    gallery.style.display = 'none';
+                });
             });
-            // Show the selected gallery
-            document.getElementById('gallery' + id).style.display = 'flex';
-        }
 
-        function openZoom(src, description) {
-            document.getElementById('zoomedImage').src = src;
-            document.getElementById('imageText').textContent = description;
-            document.getElementById('imageOverlay').style.display = 'flex';
-        }
+            function showGallery(id, clickedSpan) {
+                // Hide all galleries
+                document.querySelectorAll('.gallery-container').forEach(gallery => {
+                    gallery.style.display = 'none';
+                });
 
-        function closeZoom() {
-            document.getElementById('imageOverlay').style.display = 'none';
-        }
+                // Show the selected gallery
+                const selectedGallery = document.getElementById('gallery' + id);
+                if (selectedGallery) {
+                    selectedGallery.style.display = 'flex';
+                }
 
-        // Initially, show the first gallery
-        showGallery(1);
-    </script>
+                // Hide all spans *except* the clicked one
+                document.querySelectorAll('.categories span').forEach(span => {
+                    if (span !== clickedSpan) {
+                        span.style.display = 'none';
+                    }
+                });
+
+                // Make the clicked span visible (important!)
+                clickedSpan.style.display = 'inline-block';  // Or 'block' if you want them to stack vertically
+
+                //Optional: Add a class to the active span for styling
+                document.querySelectorAll('.categories span').forEach(span => {
+                    span.classList.remove('active'); //Remove from all spans
+                });
+                clickedSpan.classList.add('active'); //Add to the clicked one
+
+            }
+            function toggleMenu() {
+                const menu = document.getElementById('myMenu');
+                menu.classList.toggle('show');
+            }
+
+            function showHomeScreen() {
+                // Hide all galleries
+                document.querySelectorAll('.gallery-container').forEach(gallery => {
+                    gallery.style.display = 'none';
+                });
+
+                // Show all spans
+                document.querySelectorAll('.categories span').forEach(span => {
+                    span.style.display = 'inline-block';
+                });
+                const menu = document.getElementById('myMenu');
+                menu.classList.remove('show');
+
+            }
+
+            //Dynamically add spans to the menu
+            const menu = document.getElementById('myMenu');
+            const spans = document.querySelectorAll('.categories span');
+
+            spans.forEach(span => {
+                const link = document.createElement('a');
+                link.href = '#'; // Or a specific URL if needed
+                link.textContent = span.textContent;
+                link.addEventListener('click', () => {
+                    showGallery(span.getAttribute('data-gallery-id'), span);
+                    menu.classList.remove('show'); //Close the menu
+                });
+                menu.appendChild(link);
+            });
+            window.addEventListener('click', function (event) {
+                const menu = document.getElementById('myMenu');
+                const menuIcon = document.querySelector('.menu-icon');
+
+                if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+                    menu.classList.remove('show');
+                }
+            });
+            const footer = document.querySelector('footer');
+
+            function blinkFooter() {
+                footer.style.opacity = 0; // Make footer disappear
+                setTimeout(() => {
+                    footer.style.opacity = 5; // Make footer reappear
+                }, 200); // Adjust the delay (500ms = 0.5 seconds) for the "off" time
+            }
+
+            // Set up the interval to call blinkFooter every 3 seconds
+            setInterval(blinkFooter, 5000);
+
+            function openZoom(src, description) {
+                document.getElementById('zoomedImage').src = src;
+                const textContainer = document.getElementById('imageText'); // Get the <p> tag
+                textContainer.innerHTML = ""; // Clear any existing text
+
+                // Create spans for each character
+                for (let i = 0; i < description.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = description[i];
+                    textContainer.appendChild(span);
+                }
+                let charIndex = 0;
+                function revealText() {
+                    if (charIndex < description.length) {
+                        textContainer.children[charIndex].style.opacity = 1;
+                        textContainer.children[charIndex].style.transform = 'translateY(0)';
+                        charIndex++;
+                        setTimeout(revealText, 50); // Adjust delay as needed
+                    } else {
+                        textContainer.classList.add('reveal');
+                    }
+                }
+                document.getElementById('imageOverlay').style.display = 'flex';
+                revealText(); // Start the reveal effect
+
+            }
+
+            function closeZoom() {
+                document.getElementById('imageOverlay').style.display = 'none';
+            }
+            let currentViewState = "home"; // Initialize with the default view
+
+            window.addEventListener('popstate', function (event) {
+                if (currentViewState === "overlay") {
+                    closeZoom();
+                    currentViewState = "gallery"; // Or "home", depending on your logic
+                    event.preventDefault();
+                } else if (currentViewState === "gallery") {
+                    // Close the gallery
+                    document.querySelectorAll('.gallery-container').forEach(gallery => {
+                        gallery.style.display = 'none';
+                    });
+                    document.querySelectorAll('.categories span').forEach(span => {
+                        span.style.display = 'inline-block';
+                    });
+                    currentViewState = "home";
+                    event.preventDefault();
+                } else if (currentViewState === "home") {
+                    //If you want to handle navigation further, you can add your logic here.
+                }
+            });
+
+
+        </script>
 </body>
 </html>
