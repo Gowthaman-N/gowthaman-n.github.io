@@ -21,7 +21,7 @@
             padding: 0;
             position: relative; /* Important for positioning the image */
             overflow: hidden; /* Prevents image overflow */
-            object-position:top;
+            object-position: top;
         }
 
             header img {
@@ -34,8 +34,8 @@
         .categories {
             display: flex;
             flex-wrap: wrap;
-            justify-content:center;
-            text-align:center;
+            justify-content: center;
+            text-align: center;
             margin-top: 5px;
             gap: 25px;
             padding: 25px;
@@ -65,13 +65,13 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            max-height:400px;
+            max-height: 400px;
             padding: 20px;
-            align-items:center;
-            text-align:center;
+            align-items: center;
+            text-align: center;
             gap: 20px;
             display: none;
-            justify-content:flex-start;
+            justify-content: flex-start;
             scroll-snap-type: y mandatory;
         }
 
@@ -80,12 +80,11 @@
                 border-radius: 20px;
                 cursor: pointer;
                 transition: transform 0.3s;
-                text-align:center;
+                text-align: center;
                 scroll-snap-align: start;
             }
 
-                .gallery-container img:hover
-                {
+                .gallery-container img:hover {
                     transform: scale(1.05);
                 }
 
@@ -134,60 +133,60 @@
             font-size: 30px;
             color: white;
             cursor: pointer;
-        }   
+        }
+
         footer {
-            position:fixed;
-            left:0;
-            bottom:0;
-            width:100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
             text-align: center;
-            justify-content:center;
+            justify-content: center;
             font-size: 16px;
             font-family: 'Felix Titling';
-            display:block;
+            display: block;
             background-color: darkcyan;
             color: white;
             margin-top: auto;
             padding: 15px;
         }
-        #text-container { 
+
+        #text-container {
             overflow: hidden;
             white-space: pre-wrap; /* Important for preserving newlines */
             word-break: break-word; /* Allow words to break */
         }
 
-            #text-container span
-            {
+            #text-container span {
                 display: inline-block;
                 opacity: 0;
                 transition: opacity 0.2s ease, transform 0.2s ease;
                 transform: translateY(20px);
             }
 
-            #text-container.reveal span
-            {
+            #text-container.reveal span {
                 opacity: 1;
                 transform: translateY(0);
             }
 
         @media (max-width: 800px) {
             .overlay-content {
-                display:flex;
+                display: flex;
                 flex-direction: column;
                 align-items: center;
-
             }
 
             .overlay p {
                 max-width: none;
                 margin-left: 0;
                 margin-top: 10px;
-                text-align:center;
+                text-align: center;
             }
         }
+
         .menu-icon {
-            position:fixed;
-            top: 123px;            
+            position: fixed;
+            top: 123px;
             left: 10px; /* Adjust position as needed */
             cursor: pointer;
             z-index: 1001; /* Ensure it's above other elements */
@@ -241,7 +240,7 @@
         <span onclick="showGallery(11,this)">Vaira oosi design</span>
     </div>
 
-    <div class="gallery-container" id="gallery1">        
+    <div class="gallery-container" id="gallery1">
         <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
         <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
         <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
@@ -258,7 +257,7 @@
         <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
     </div>
 
-    <div class="gallery-container" id="gallery2">        
+    <div class="gallery-container" id="gallery2">
         <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0180.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
         <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0181.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
         <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0182.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
@@ -282,7 +281,7 @@
         <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0200.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery3">        
+    <div class="gallery-container" id="gallery3">
         <img src="Images/Kancheepuram Sarees/Saree1.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
         <img src="Images/Kancheepuram Sarees/saree2.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
         <img src="Images/Kancheepuram Sarees/Saree3.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
@@ -302,7 +301,7 @@
         <img src="Images/Kancheepuram Sarees/Saree17.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery4">        
+    <div class="gallery-container" id="gallery4">
         <img src="Images/Luxury soft silks/IMG-20250126-WA0010.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
         <img src="Images/Luxury soft silks/IMG-20250126-WA0011.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
         <img src="Images/Luxury soft silks/IMG-20250126-WA0012.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
@@ -338,7 +337,7 @@
         <img src="Images/Luxury soft silks/IMG-20250126-WA0043.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery5">       
+    <div class="gallery-container" id="gallery5">
         <img src="Images/New  soft check silk sarees/IMG-20250126-WA0201.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
         <img src="Images/New  soft check silk sarees/IMG-20250126-WA0202.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
         <img src="Images/New  soft check silk sarees/IMG-20250126-WA0203.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
@@ -352,7 +351,7 @@
         <img src="Images/New  soft check silk sarees/IMG-20250126-WA0211.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery6">        
+    <div class="gallery-container" id="gallery6">
         <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0124.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
         <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0125.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
         <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0126.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
@@ -381,7 +380,7 @@
         <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0149.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery7">        
+    <div class="gallery-container" id="gallery7">
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0079.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0080.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0081.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
@@ -429,7 +428,7 @@
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00123.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery8">        
+    <div class="gallery-container" id="gallery8">
         <img src="Images/RIch Cotton Saree/IMG-20250126-WA0172.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
         <img src="Images/RIch Cotton Saree/IMG-20250126-WA0173.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
         <img src="Images/RIch Cotton Saree/IMG-20250126-WA0174.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
@@ -440,7 +439,7 @@
         <img src="Images/RIch Cotton Saree/IMG-20250126-WA0179.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
     </div>
 
-    <div class="gallery-container" id="gallery9">        
+    <div class="gallery-container" id="gallery9">
         <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0226.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
         <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0227.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
         <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0228.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
@@ -494,7 +493,7 @@
         <img src="Images/Two Work Sarees/IMG-20250126-WA0078.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
     </div>
 
-    <div class="gallery-container" id="gallery11">        
+    <div class="gallery-container" id="gallery11">
         <img src="Images/Vaira oosi design/IMG-20250126-WA0150.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
         <img src="Images/Vaira oosi design/IMG-20250126-WA0151.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
         <img src="Images/Vaira oosi design/IMG-20250126-WA0152.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
@@ -519,257 +518,277 @@
         <img src="Images/Vaira oosi design/IMG-20250126-WA0171.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
     </div>
 
-        <!-- Zoom Overlay -->
+    <!-- Zoom Overlay -->
     <div id="imageOverlay">
         <span class="close-button" onclick="closeZoom()">&times;</span> <div class="overlay-content">
             <img id="overlayImage" src="" alt="Zoomed Image">
             <p id="overlayDescription"></p>
         </div>
     </div>
-        <div class="menu-icon" onclick="showHomeScreen()">🏠</div>  <div class="menu" id="myMenu">
-            <!--<a href="#" onclick="showHomeScreen()">🏠</a>-->
-        </div>
+    <div class="menu-icon" onclick="showHomeScreen()">🏠</div>  <div class="menu" id="myMenu">
+        <!--<a href="#" onclick="showHomeScreen()">🏠</a>-->
+    </div>
 
-        <footer>
-            <p>&copy; Select Your Sarees and Call or WhatsApp to 9789056621. We will show you a sample product of the similar or same item @your doorstep!</p>
-        </footer>
+    <footer>
+        <p>&copy; Select Your Sarees and Call or WhatsApp to 9789056621. We will show you a sample product of the similar or same item @your doorstep!</p>
+    </footer>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Initially hide all galleries, but NOT the spans
-                document.querySelectorAll('.gallery-container').forEach(gallery => {
-                    gallery.style.display = 'none';
-                });
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.gallery-container').forEach(gallery => {
+                gallery.style.display = 'none';
             });
-            let currentViewState = "home"; // Initialize with the default view
-            let currentGalleryId = null;
-            function showGallery(id, clickedSpan) {
-                // Hide all galleries
-                document.querySelectorAll('.gallery-container').forEach(gallery => {
-                    gallery.style.display = 'none';
-                    currentViewState = "gallery";  // Update view state
-                    currentGalleryId = id;       // Store the current gallery ID
-                    history.pushState({ view: "gallery", galleryId: id }, "", `#gallery${id}`); // Push state with gallery ID
-                });
+        });
 
-                // Show the selected gallery
-                const selectedGallery = document.getElementById('gallery' + id);
-                if (selectedGallery) {
-                    selectedGallery.style.display = 'flex';
+        let currentViewState = "home";
+        let currentGalleryId = null;
+
+        function showGallery(id, clickedSpan) {
+            document.querySelectorAll('.gallery-container').forEach(gallery => {
+                gallery.style.display = 'none';
+            });
+
+            document.querySelectorAll('.categories span').forEach(span => {
+                if (span !== clickedSpan) {
+                    span.style.display = 'none';
                 }
+            });
 
-                // Hide all spans *except* the clicked one
-                document.querySelectorAll('.categories span').forEach(span => {
-                    if (span !== clickedSpan) {
-                        span.style.display = 'none';
-                    }
-                });
+            clickedSpan.style.display = 'inline-block';
 
-                // Make the clicked span visible (important!)
-                clickedSpan.style.display = 'inline-block'; // Or 'block' if you want them to stack vertically
+            document.querySelectorAll('.categories span').forEach(span => {
+                span.classList.remove('active');
+            });
+            clickedSpan.classList.add('active');
 
-                //Optional: Add a class to the active span for styling
-                document.querySelectorAll('.categories span').forEach(span => {
-                    span.classList.remove('active'); //Remove from all spans
-                });
-                clickedSpan.classList.add('active'); //Add to the clicked one
-
+            const selectedGallery = document.getElementById('gallery' + id);
+            if (selectedGallery) {
+                selectedGallery.style.display = 'flex';
+                currentViewState = "gallery";
+                currentGalleryId = id;
+                history.pushState({ view: "gallery", galleryId: id }, "", `#gallery${id}`);
             }
-            function toggleMenu() {
-                const menu = document.getElementById('myMenu');
-                menu.classList.toggle('show');
-            }
+        }
 
-            function showHomeScreen() {
-                // Hide all galleries
-                document.querySelectorAll('.gallery-container').forEach(gallery => {
-                    gallery.style.display = 'none';
-                    currentViewState = "home";
-                    currentGalleryId = null;
-                    history.pushState({ view: "home" }, "", "/"); // Push state for home
-                });
-
-                // Show all spans
-                document.querySelectorAll('.categories span').forEach(span => {
-                    span.style.display = 'inline-block';
-                });
-                const menu = document.getElementById('myMenu');
-                menu.classList.remove('show');
-
-            }
-            const descriptions = {
-                "Boomika sareeDes": `👉 Priced at just ₹500;
-                                        📍Silk based most affordable Sarees; 
-                                        📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
-                                        📍Featuring fully pastel colours; 
-                                        📍This limited-edition piece boasts a stylish contrast pallu;`,                                                 
-                "Full work soft silk sareesDes": `👉 Special Price: Rs 900;  
-                                                     📍Full work SOFT SILK  SAREES;
-                                                     📍Fine art silk quality, soft silk material;
-                                                     📍Rich pallu & blouse with contrast;
-                                                     📍Small Zari work motif; 
-                                                     📍Copper zari worked, smooth feel;
-                                                     📍Comfortable, lightweight, breathable, durable, versatile;
-                                                     📍Ideal for festivals, weddings, parties, casual drapes beautifully;
-                                                     📍100%  soft silk Sarees;`,   
-                "Semi Kancheepuram silk sareesDes":`👉 Priced at just ₹2000;
-                                                     📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
-                                                     📍Pure Silk based Hologram design;
-                                                     📍With Best Complimentary Premium box packing For Saree;`,
-                "Luxury soft silk sareesDes":`👉 SPECIAL PRICE ₹1500;
-                                                     📍LUXURY SOFT SILK; 
-                                                     📍Pure Mix soft silk sarees;
-                                                     📍Double warp & luxury silk yarn mixed;
-                                                     📍Rich pallu with contrast blouse;
-                                                     📍All over putta work saree;
-                                                     📍Design border;
-                                                     📍1st quality pure pattu saree collection type;
-                                                     📍NOTE👉🏻 Dry wash only;
-                                                     📍#PURE PATTU SOFT SILK Double tone look;
-                                                     📍MARKET PRICE 8000+;`,
-                "New Soft check silk sareesDes":`👉 Price: Rs 890;
-                                                     📍Art Silk in checked;
-                                                     📍Fully Motif Work;
-                                                     📍Full Body stone;
-                                                     📍High-Quality Materials;
-                                                     📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
-                "Premium & royal soft silk sareesDes":`👉 Price: ₹900;
-                                                     📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
-                                                     📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
-                                                     📍Pairs with contrast  blouse;
-                                                     📍A exclusive boutique collection;`,
-                "Premium Double Warp-kanji sareesDes":`👉 Special Sale :2000 Rs;
-                                                         📍Premium Double Warp;
-                                                         📍Semi kanchipuram Sarees;
-                                                         📍Handloom type made;
-                                                         📍Soft silk;
-                                                         📍Two jari work saree;
-                                                         📍Copper Jari;`,
-                "Rich Cotton SareeDes":`👉 Best Price ever : 900 Rs;
-                                                 📍Rich Cotton Saree;
-                                                 📍Power loom;
-                                                 📍Kotta cotton;
-                                                 📍Rich pallu;
-                                                 📍1St Quality;
-                                                 📍Contrast border;
-                                                 📍Contrast Blouse;`,
-                "Soft silk saree- Affordable priceDes":`👉 Price:  550 Rs; 
-                                                     📍Soft Silk Saree;
-                                                     📍Art silk weaving; 
-                                                     📍Pure motif; 
-                                                     📍Pink copper jari;
-                                                     📍Jacquard Border;
-                                                     📍Watt Butta saree;`,
-                "Two Work sareesDes":`👉 Best Price : 900 Rs; 
-                                         📍Bridal Silk Saree;
-                                         📍Two work saree;
-                                         📍Half and half model;
-                                         📍Two design Two colours in single sareee;
-                                         📍Art silk weaving;
-                                         📍Arni Made;
-                                         📍Fully processed;
-                                         📍Gold, copper jari;
-                                         📍Two weave;
-                                         📍Blouse and contrast pallu;`,
-                "Vaira oosi designDes":`👉 Offer Price 950 Rs; 
-                                         📍Limited Edition Trending Vaira Oosi Design; 
-                                         📍Luxurious soft silk saree; 
-                                         📍Vibrant Motifs;
-                                         📍Rich pallu;
-                                         📍1St Quality; 
-                                         📍Fine quality zari;
-                                         📍Contrast Blouse;
-                                         📍1/2 Warp Saree; 
-                                         📍Perfect for Wedding Season;`,                                                
-                                   };
-            //Dynamically add spans to the menu
+        function toggleMenu() {
             const menu = document.getElementById('myMenu');
-            //const spans = document.querySelectorAll('.categories span');
+            menu.classList.toggle('show');
+        }
 
-            spans.forEach(span => {
-                const link = document.createElement('a');
-                link.href = '#'; // Or a specific URL if needed
-                link.textContent = span.textContent;
-                link.addEventListener('click', () => {
-                    showGallery(span.getAttribute('data-gallery-id'), span);
-                    menu.classList.remove('show'); //Close the menu
-                });
-                menu.appendChild(link);
+        function showHomeScreen() {
+            document.querySelectorAll('.gallery-container').forEach(gallery => {
+                gallery.style.display = 'none';
             });
-            window.addEventListener('click', function (event) {
-                const menu = document.getElementById('myMenu');
-                const menuIcon = document.querySelector('.menu-icon');
 
-                if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
-                    menu.classList.remove('show');
-                }
+            document.querySelectorAll('.categories span').forEach(span => {
+                span.style.display = 'inline-block';
             });
-            const footer = document.querySelector('footer');
 
-            function blinkFooter() {
-                footer.style.opacity = 0; // Make footer disappear
-                setTimeout(() => {
-                    footer.style.opacity = 5; // Make footer reappear
-                }, 200); // Adjust the delay (500ms = 0.5 seconds) for the "off" time
+            const menu = document.getElementById('myMenu');
+            menu.classList.remove('show');
+
+            currentViewState = "home";
+            currentGalleryId = null;
+
+            // Correct URL handling for the home screen:
+            if (window.location.pathname !== "/") {
+                history.pushState({ view: "home" }, "", "/");
+            } else if (window.location.hash) { //If already on home page and has a hash
+                history.pushState({ view: "home" }, "", "/#home");
+            } else {
+                history.replaceState({ view: "home" }, "", "/"); // Use replaceState to avoid extra history entry
             }
+        }
 
-            // Set up the interval to call blinkFooter every 3 seconds
-            setInterval(blinkFooter, 5000);
+        const descriptions = {
+            "Boomika sareeDes": `👉 Priced at just ₹500;
+                                            📍Silk based most affordable Sarees;
+                                            📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
+                                            📍Featuring fully pastel colours;
+                                            📍This limited-edition piece boasts a stylish contrast pallu;`,
+            "Full work soft silk sareesDes": `👉 Special Price: Rs 900;
+                                                         📍Full work SOFT SILK  SAREES;
+                                                         📍Fine art silk quality, soft silk material;
+                                                         📍Rich pallu & blouse with contrast;
+                                                         📍Small Zari work motif;
+                                                         📍Copper zari worked, smooth feel;
+                                                         📍Comfortable, lightweight, breathable, durable, versatile;
+                                                         📍Ideal for festivals, weddings, parties, casual drapes beautifully;
+                                                         📍100%  soft silk Sarees;`,
+            "Semi Kancheepuram silk sareesDes": `👉 Priced at just ₹2000;
+                                                         📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
+                                                         📍Pure Silk based Hologram design;
+                                                         📍With Best Complimentary Premium box packing For Saree;`,
+            "Luxury soft silk sareesDes": `👉 SPECIAL PRICE ₹1500;
+                                                         📍LUXURY SOFT SILK;
+                                                         📍Pure Mix soft silk sarees;
+                                                         📍Double warp & luxury silk yarn mixed;
+                                                         📍Rich pallu with contrast blouse;
+                                                         📍All over putta work saree;
+                                                         📍Design border;
+                                                         📍1st quality pure pattu saree collection type;
+                                                         📍NOTE👉🏻 Dry wash only;
+                                                         📍#PURE PATTU SOFT SILK Double tone look;
+                                                         📍MARKET PRICE 8000+;`,
+            "New Soft check silk sareesDes": `👉 Price: Rs 890;
+                                                         📍Art Silk in checked;
+                                                         📍Fully Motif Work;
+                                                         📍Full Body stone;
+                                                         📍High-Quality Materials;
+                                                         📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
+            "Premium & royal soft silk sareesDes": `👉 Price: ₹900;
+                                                         📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
+                                                         📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
+                                                         📍Pairs with contrast  blouse;
+                                                         📍A exclusive boutique collection;`,
+            "Premium Double Warp-kanji sareesDes": `👉 Special Sale :2000 Rs;
+                                                             📍Premium Double Warp;
+                                                             📍Semi kanchipuram Sarees;
+                                                             📍Handloom type made;
+                                                             📍Soft silk;
+                                                             📍Two jari work saree;
+                                                             📍Copper Jari;`,
+            "Rich Cotton SareeDes": `👉 Best Price ever : 900 Rs;
+                                                     📍Rich Cotton Saree;
+                                                     📍Power loom;
+                                                     📍Kotta cotton;
+                                                     📍Rich pallu;
+                                                     📍1St Quality;
+                                                     📍Contrast border;
+                                                     📍Contrast Blouse;`,
+            "Soft silk saree- Affordable priceDes": `👉 Price:  550 Rs;
+                                                         📍Soft Silk Saree;
+                                                         📍Art silk weaving;
+                                                         📍Pure motif;
+                                                         📍Pink copper jari;
+                                                         📍Jacquard Border;
+                                                         📍Watt Butta saree;`,
+            "Two Work sareesDes": `👉 Best Price : 900 Rs;
+                                             📍Bridal Silk Saree;
+                                             📍Two work saree;
+                                             📍Half and half model;
+                                             📍Two design Two colours in single sareee;
+                                             📍Art silk weaving;
+                                             📍Arni Made;
+                                             📍Fully processed;
+                                             📍Gold, copper jari;
+                                             📍Two weave;
+                                             📍Blouse and contrast pallu;`,
+            "Vaira oosi designDes": `👉 Offer Price 950 Rs;
+                                             📍Limited Edition Trending Vaira Oosi Design;
+                                             📍Luxurious soft silk saree;
+                                             📍Vibrant Motifs;
+                                             📍Rich pallu;
+                                             📍1St Quality;
+                                             📍Fine quality zari;
+                                             📍Contrast Blouse;
+                                             📍1/2 Warp Saree;
+                                             📍Perfect for Wedding Season;`,
+        };
 
+        const spans = document.querySelectorAll('.categories span');
 
-            function openZoom(src, descriptionKey) { // Pass a key to identify the description
-                const overlay = document.getElementById('imageOverlay');
-                const overlayImage = document.getElementById('overlayImage');
-                const overlayDescription = document.getElementById('overlayDescription');
+        spans.forEach((span, index) => { // Use index for gallery ID
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = span.textContent;
+            link.setAttribute('data-gallery-id', index + 1); // Correct gallery ID assignment
+            link.addEventListener('click', () => {
+                showGallery(link.getAttribute('data-gallery-id'), span);
+                menu.classList.remove('show');
+            });
+            menu.appendChild(link);
+        });
 
-                if (overlay && overlayImage && overlayDescription) {
-                    const description = descriptions[descriptionKey]; // Retrieve by key
+        window.addEventListener('click', function (event) {
+            const menu = document.getElementById('myMenu');
+            const menuIcon = document.querySelector('.menu-icon');
 
-                    if (description) {
-                        const lines = description.split(";");
-                        const formattedDescription = lines.join("<br>");
-                        overlayImage.src = src;
-                        overlayDescription.innerHTML = formattedDescription;
-                        overlay.style.display = 'flex';
-                        overlayDescription.style.textAlign = 'justify'; 
-                        /*overlayDescription.style.whiteSpace = 'pre-wrap';*/ 
-                    } else {
-                        console.error("Description not found for key:", descriptionKey);
-                    }
+            if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        const footer = document.querySelector('footer');
+
+        function blinkFooter() {
+            footer.style.opacity = 0;
+            setTimeout(() => {
+                footer.style.opacity = 5;
+            }, 200);
+        }
+
+        setInterval(blinkFooter, 5000);
+
+        function openZoom(src, descriptionKey) {
+            const overlay = document.getElementById('imageOverlay');
+            const overlayImage = document.getElementById('overlayImage');
+            const overlayDescription = document.getElementById('overlayDescription');
+
+            if (overlay && overlayImage && overlayDescription) {
+                const description = descriptions[descriptionKey];
+
+                if (description) {
+                    const lines = description.split(";");
+                    const formattedDescription = lines.join("<br>");
+                    overlayImage.src = src;
+                    overlayDescription.innerHTML = formattedDescription;
+                    overlay.style.display = 'flex';
+                    overlayDescription.style.textAlign = 'justify';
                 } else {
-                    console.error("One or more overlay elements not found!");
+                    console.error("Description not found for key:", descriptionKey);
                 }
-                currentViewState = "overlay";
-                history.pushState({ view: "overlay" }, "", "#overlay"); // Push state for overlay
+            } else {
+                console.error("One or more overlay elements not found!");
             }
+            currentViewState = "overlay";
+            history.pushState({ view: "overlay" }, "", "#overlay");
+        }
 
-            function closeZoom()
-            {
-                document.getElementById('imageOverlay').style.display = 'none';
-                currentViewState = "gallery"; // Set back to gallery view
-                history.back(); // Go back to the gallery view using history
-            }
-           
+        function closeZoom() {
+            document.getElementById('imageOverlay').style.display = 'none';
+            currentViewState = "gallery";
+            history.back();
+        }
 
-            window.addEventListener('popstate', function (event) {
-                if (event.state) {
-                    currentViewState = event.state.view;
 
-                    if (currentViewState === "overlay") {
-                        closeZoom();
-                    } else if (currentViewState === "gallery") {
-                        showHomeScreen(); // First go to home screen
-                        showGallery(event.state.galleryId); // Then open the appropriate gallery
-                    } else if (currentViewState === "home") {
-                        showHomeScreen();
-                    }
-                } else {
-                    // Handle initial page load or cases where state is null (e.g., user manually types URL)
+        window.addEventListener('popstate', function (event) {
+            if (event.state) {
+                currentViewState = event.state.view;
+                if (currentViewState === "overlay") {
+                    closeZoom();
+                } else if (currentViewState === "gallery") {
+                    currentGalleryId = event.state.galleryId; // Set the currentGalleryId
+                    showHomeScreen();
+                    requestAnimationFrame(() => {
+                        showGallery(event.state.galleryId);
+                    });
+                } else if (currentViewState === "home") {
                     showHomeScreen();
                 }
-            });
+            } else {
+                // Initial load (no state):
+                const hash = window.location.hash;
 
+                if (hash) {
+                    if (hash.startsWith("#gallery")) {
+                        const galleryId = hash.substring(8);
+                        currentGalleryId = galleryId; // Set the currentGalleryId
+                        showHomeScreen();
+                        requestAnimationFrame(() => {
+                            showGallery(galleryId);
+                        });
+                    } else if (hash === "#overlay") {
+                        openZoom();
+                    }
+                } else {
+                    showHomeScreen();
+                }
+            }
+        });
 
-        </script>
+        window.dispatchEvent(new Event('popstate'));
+
+    </script>
 </body>
 </html>
