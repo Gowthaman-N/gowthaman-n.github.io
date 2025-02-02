@@ -735,32 +735,49 @@
             }
 
 
-            function closeZoom() {
-                document.getElementById('imageOverlay').style.display = 'none';
-                currentViewState = "gallery"; // Or "home" as needed
-                history.back(); // Go back in history to the previous state
-            }
-            let currentViewState = "home"; // Initialize with the default view
+           function closeZoom() {
+    document.getElementById('imageOverlay').style.display = 'none';
+    currentViewState = "gallery";
 
-            window.addEventListener('popstate', function (event) {
-                if (currentViewState === "overlay") {
-                    closeZoom();
-                    currentViewState = "gallery"; // Or "home", depending on your logic
-                    event.preventDefault();
-                } else if (currentViewState === "gallery") {
-                    // Close the gallery
-                    document.querySelectorAll('.gallery-container').forEach(gallery => {
-                        gallery.style.display = 'none';
-                    });
-                    document.querySelectorAll('.categories span').forEach(span => {
-                        span.style.display = 'inline-block';
-                    });
-                    currentViewState = "home";
-                    event.preventDefault();
-                } else if (currentViewState === "home") {
-                    //If you want to handle navigation further, you can add your logic here.
-                }
-            });
+    if (history.length > 1) { // Check if there's a history entry to go back to
+        history.back();
+    } else {
+        // Handle the case where there's no history to go back to.
+        // Options:
+        // 1. Do nothing (stay on the current page):
+        //    (No code needed here)
+
+        // 2. Navigate to a specific URL (e.g., your home page):
+        //    window.location.href = "/"; // Or your home page URL
+
+        // 3. Close the current tab (use with caution):
+        //    window.close();  // Not recommended as it can be user-unfriendly
+    }
+}
+
+// ... (rest of your code)
+
+window.addEventListener('popstate', function (event) {
+    if (currentViewState === "overlay") {
+        closeZoom();
+        currentViewState = "gallery";
+        event.preventDefault(); // Prevent default only if we handled the back
+    } else if (currentViewState === "gallery") {
+        document.querySelectorAll('.gallery-container').forEach(gallery => {
+            gallery.style.display = 'none';
+        });
+        document.querySelectorAll('.categories span').forEach(span => {
+            span.style.display = 'inline-block';
+        });
+        currentViewState = "home";
+
+        if (history.length > 1) {
+            event.preventDefault(); // Prevent default only if we handled the back
+        }
+    } else if (currentViewState === "home") {
+        // Handle home view popstate if needed.
+    }
+});
         </script>
 </body>
 </html>
