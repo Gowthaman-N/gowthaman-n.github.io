@@ -126,7 +126,7 @@
             margin-top: 10px;
         }
 
-        nav-buttons {
+        .close-buttons {
             position: page; /* Or relative if you want it in the flow */
             bottom: 100px; /* Adjust position as needed */
             left: 100%;
@@ -136,7 +136,7 @@
             z-index: 40; /* Ensure they are above other content */
         }
 
-        .nav-buttons button {
+        .close-buttons button {
             padding: 10px 20px;
             border: none;
             background-color: #4CAF50; /* Green */
@@ -149,14 +149,14 @@
             border-radius: 5px;
         }
 
-            .nav-buttons button:hover {
+            .close-buttons button:hover {
                 background-color: #45a049;
             }
 
-        
+
 
         footer {
-            position: fixed;
+            position: relative;
             left: 0;
             bottom: 0;
             width: 100%;
@@ -169,6 +169,7 @@
             color: white;
             margin-top: auto;
             padding: 15px;
+            z-index: 1000;
         }
 
         #text-container {
@@ -239,6 +240,26 @@
             .menu.show {
                 display: block; /* Show the menu when the class is present */
             }
+        .close-button-gallery { /* Style for the gallery close button */
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Space below the gallery */
+            display: block; /* Make it a block element to take full width */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .gallery-container {
+            display: none;
+            flex-direction: column; /* Align items vertically */
+            align-items: center; /* Center items horizontally */
+            padding-bottom:0px;
+        }
     </style>
 </head>
 <body>
@@ -602,6 +623,37 @@
                 historyStack = historyStack.slice(0, historyIndex + 1); // Clear forward history
                 historyStack.push({ view: "gallery", galleryId: id, categoryIndex: categoryIndex });
                 historyIndex++;
+                const closeButtonGallery = document.createElement('span');
+                closeButtonGallery.textContent = 'Close Gallery';
+                closeButtonGallery.classList.add('close-button-gallery'); // Use a separate CSS class
+                closeButtonGallery.addEventListener('click', closeGallery); // New function to close the gallery
+
+                selectedGallery.appendChild(closeButtonGallery);    
+            }
+        }
+        function closeGallery() {
+            const selectedGallery = document.getElementById('gallery' + currentGalleryId); // Get the current gallery
+            if (selectedGallery) {
+                selectedGallery.style.display = 'none'; // Hide the gallery
+                const closeButtonGallery = selectedGallery.querySelector('.close-button-gallery'); //Find the button
+                if (closeButtonGallery) {
+                    selectedGallery.removeChild(closeButtonGallery); // Remove the button
+                }
+
+                document.querySelectorAll('.categories span').forEach(span => {
+                    span.style.display = 'inline-block';
+                });
+                document.querySelectorAll('.categories span').forEach(span => {
+                    span.classList.remove('active');
+                });
+
+                currentViewState = "home";
+                currentGalleryId = null;
+                historyStack = historyStack.slice(0, historyIndex + 1);
+                historyStack.push({ view: "home" });
+                historyIndex++;
+                window.history.pushState({ view: "home" }, "", "/");
+
             }
         }
 
@@ -758,15 +810,19 @@
             const overlay = document.getElementById('imageOverlay');
             const overlayImage = document.getElementById('overlayImage');
             const overlayDescription = document.getElementById('overlayDescription');
-            const closeButton = document.createElement('span');
-            closeButton.textContent = 'Close';
-            closeButton.style.position = 'absolute';
+            const closeButton = document.createElement('span');            
+            closeButton.textContent = 'CLOSE';
+            
+            closeButton.style.position = 'fixed';            
             closeButton.style.bottom = '10px';
             closeButton.style.left = '50%'; // Center horizontally
             closeButton.style.transform = 'translateX(-50%)';
             closeButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Semi-transparent background
             closeButton.style.color = 'white';
-            closeButton.style.padding = '5px 10px';
+            closeButton.style.padding = '10px 20px';
+            closeButton.style.fontSize = '25px'
+            closeButton.style.width = '100px';
+            closeButton.style.height = '40px';
             closeButton.style.borderRadius = '5px';
             closeButton.style.cursor = 'pointer';
             closeButton.id = 'closeButton';
