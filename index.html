@@ -296,8 +296,7 @@
         <img src="Images/Kancheepuram Sarees/Saree12.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
         <img src="Images/Kancheepuram Sarees/Saree13.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
         <img src="Images/Kancheepuram Sarees/Saree14.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree15.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree16.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+        <img src="Images/Kancheepuram Sarees/Saree15.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">       
         <img src="Images/Kancheepuram Sarees/Saree17.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
     </div>
 
@@ -423,9 +422,9 @@
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0118.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0119.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
         <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0120.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00121.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00122.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA00123.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0121.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0122.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0123.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
     </div>
 
     <div class="gallery-container" id="gallery8">
@@ -570,7 +569,7 @@
                 selectedGallery.style.display = 'flex';
                 currentViewState = "gallery";
                 currentGalleryId = id;
-                history.pushState({ view: "gallery", galleryId: id }, "", `#gallery${id}`);
+               
             }
         }
 
@@ -701,7 +700,7 @@
                 showGallery(link.getAttribute('data-gallery-id'), span);
                 menu.classList.remove('show');
             });
-            menu.appendChild(link);
+            
         });
 
         window.addEventListener('click', function (event) {
@@ -757,42 +756,24 @@
 
 
         window.addEventListener('popstate', function (event) {
-            if (event.state) {
-                currentViewState = event.state.view;
-                if (currentViewState === "overlay") {
-                    closeZoom();
-                } else if (currentViewState === "gallery") {
-                    currentGalleryId = event.state.galleryId; // Set the currentGalleryId
-                    showHomeScreen();
-                    requestAnimationFrame(() => {
-                        showGallery(event.state.galleryId);
-                    });
-                } else if (currentViewState === "home") {
-                    showHomeScreen();
-                }
-            } else {
-                // Initial load (no state):
-                const hash = window.location.hash;
-
-                if (hash) {
-                    if (hash.startsWith("#gallery")) {
-                        const galleryId = hash.substring(8);
-                        currentGalleryId = galleryId; // Set the currentGalleryId
-                        showHomeScreen();
-                        requestAnimationFrame(() => {
-                            showGallery(galleryId);
-                        });
-                    } else if (hash === "#overlay") {
-                        openZoom();
-                    }
-                } else {
-                    showHomeScreen();
-                }
+            if (currentViewState === "overlay") {
+                closeZoom();
+                currentViewState = "gallery"; // Or "home", depending on your logic
+                event.preventDefault();
+            } else if (currentViewState === "gallery") {
+                // Close the gallery
+                document.querySelectorAll('.gallery-container').forEach(gallery => {
+                    gallery.style.display = 'none';
+                });
+                document.querySelectorAll('.categories span').forEach(span => {
+                    span.style.display = 'inline-block';
+                });
+                currentViewState = "home";
+                event.preventDefault();
+            } else if (currentViewState === "home") {
+                //If you want to handle navigation further, you can add your logic here.
             }
         });
-
-        window.dispatchEvent(new Event('popstate'));
-
     </script>
 </body>
 </html>
