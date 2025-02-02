@@ -542,6 +542,10 @@
 
         let currentViewState = "home";
         let currentGalleryId = null;
+        const history = window.history;
+        const goBack = () => {
+            history.back(); 
+        }
 
         function showGallery(id, clickedSpan) {
             document.querySelectorAll('.gallery-container').forEach(gallery => {
