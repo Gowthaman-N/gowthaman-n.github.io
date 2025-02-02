@@ -541,11 +541,15 @@
                     gallery.style.display = 'none';
                 });
             });
-
+            let currentViewState = "home"; // Initialize with the default view
+            let currentGalleryId = null;
             function showGallery(id, clickedSpan) {
                 // Hide all galleries
                 document.querySelectorAll('.gallery-container').forEach(gallery => {
                     gallery.style.display = 'none';
+                    currentViewState = "gallery";  // Update view state
+                    currentGalleryId = id;       // Store the current gallery ID
+                    history.pushState({ view: "gallery", galleryId: id }, "", `#gallery${id}`); // Push state with gallery ID
                 });
 
                 // Show the selected gallery
@@ -580,6 +584,9 @@
                 // Hide all galleries
                 document.querySelectorAll('.gallery-container').forEach(gallery => {
                     gallery.style.display = 'none';
+                    currentViewState = "home";
+                    currentGalleryId = null;
+                    history.pushState({ view: "home" }, "", "/"); // Push state for home
                 });
 
                 // Show all spans
@@ -732,33 +739,37 @@
                 } else {
                     console.error("One or more overlay elements not found!");
                 }
+                currentViewState = "overlay";
+                history.pushState({ view: "overlay" }, "", "#overlay"); // Push state for overlay
             }
 
+            function closeZoom()
+            {
+                document.getElementById('imageOverlay').style.display = 'none';
+                currentViewState = "gallery"; // Set back to gallery view
+                history.back(); // Go back to the gallery view using history
+            }
+           
 
-         function closeZoom() {
-    document.getElementById('imageOverlay').style.display = 'none';
-}
-let currentViewState = "home"; // Initialize with the default view
+            window.addEventListener('popstate', function (event) {
+                if (event.state) {
+                    currentViewState = event.state.view;
 
-window.addEventListener('popstate', function (event) {
-    if (currentViewState === "overlay") {
-        closeZoom();
-        currentViewState = "gallery"; // Or "home", depending on your logic
-        event.preventDefault();
-    } else if (currentViewState === "gallery") {
-        // Close the gallery
-        document.querySelectorAll('.gallery-container').forEach(gallery => {
-            gallery.style.display = 'none';
-        });
-        document.querySelectorAll('.categories span').forEach(span => {
-            span.style.display = 'inline-block';
-        });
-        currentViewState = "home";
-        event.preventDefault();
-    } else if (currentViewState === "home") {
-        //If you want to handle navigation further, you can add your logic here.
-    }
-});
+                    if (currentViewState === "overlay") {
+                        closeZoom();
+                    } else if (currentViewState === "gallery") {
+                        showHomeScreen(); // First go to home screen
+                        showGallery(event.state.galleryId); // Then open the appropriate gallery
+                    } else if (currentViewState === "home") {
+                        showHomeScreen();
+                    }
+                } else {
+                    // Handle initial page load or cases where state is null (e.g., user manually types URL)
+                    showHomeScreen();
+                }
+            });
+
+
         </script>
 </body>
 </html>
