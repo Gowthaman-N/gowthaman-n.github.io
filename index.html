@@ -89,62 +89,52 @@
                     transform: scale(1.05);
                 }
 
-        .overlay {
+        #imageOverlay {
+            display: none;
             position: fixed;
-            top: 5px;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999;
+            flex-direction: column; /* For the close button and content */
         }
 
         .overlay-content {
-            display: flex;
-            flex-direction:column;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 90%; /* Prevents content from being too wide */
+            max-height: 90%; /* Prevents content from being too tall */
+            overflow: auto; /* Adds scrollbars if content overflows */
+            display: flex; /* Use flexbox for image and description layout */
+            flex-direction: column; /* Stack image and description vertically */
+            align-items: center; /* Center content horizontally */
         }
 
-        .overlay img {
-            max-width: 70%;
-            max-height: 70%;
-            align-items:center;
-            border-radius: 10px;
+        #overlayImage {
+            max-width: 100%; /* Image takes up available width within its container */
+            max-height: 80%; /* Image takes up available height within its container */
+            display: block; /* Prevents small vertical space below image */
         }
 
-        .overlay p {
-            font-size: 16px;
-            max-width: 200px;
-            color: white;
-            text-align:center;
-            align-content:center;
-            justify-content:normal;
-            margin-left: 10px;
+        #overlayDescription {
+            color: black;
+            text-align: center;
+            margin-top: 10px;
         }
 
-        .overlay-close {
-            
+        .close-button {
+            position: absolute;
             top: 20px;
-            right: 30px;
-            color: brown;
-            border:unset;
-            padding:10px 20px;
-            border-radius:5px;
+            right: 20px;
             font-size: 30px;
-            font-family:'Bell MT';
-            font-weight:bold;
-            cursor: pointer;                       
-        }
-            .overlay-close:hover 
-            {
-                background-color: rgba(0, 0, 0, 0.7); /* Darker background on hover */
-            }
-
+            color: white;
+            cursor: pointer;
+        }   
         footer {
            
             left:0;
@@ -541,13 +531,12 @@
     </div>
 
         <!-- Zoom Overlay -->
-        <div class="overlay" id="imageOverlay">
-            <div class="overlay-content">
-                <img id="zoomedImage" src="" alt="Zoomed Image">
-                <p id="imageText">Product description will appear here.</p>
-                <button class="overlay-close" onclick="closeZoom()">Close</button>
-            </div>
+    <div id="imageOverlay">
+        <span class="close-button" onclick="closeZoom()">&times;</span> <div class="overlay-content">
+            <img id="overlayImage" src="" alt="Zoomed Image">
+            <p id="overlayDescription"></p>
         </div>
+    </div>
         <div class="menu-icon" onclick="showHomeScreen()">🏠</div>  <div class="menu" id="myMenu">
             <!--<a href="#" onclick="showHomeScreen()">🏠</a>-->
         </div>
@@ -647,15 +636,24 @@
             // Set up the interval to call blinkFooter every 3 seconds
             setInterval(blinkFooter, 5000);
 
+
             function openZoom(src, description) {
-                window.open(src, '_blank'); // Open image in a new tab/window
-                // The description can still be used, but it won't be displayed in the popup.
-                // You might want to pass it as a URL parameter and retrieve it on the new page.
+                const overlay = document.getElementById('imageOverlay');
+                const overlayImage = document.getElementById('overlayImage');
+                const overlayDescription = document.getElementById('overlayDescription'); // Add this line
+
+                overlayImage.src = src;
+                overlayDescription.textContent = description; // Set the description
+                overlay.style.display = 'flex';
+                currentViewState = "overlay";
+                history.pushState(null, null, window.location.pathname); // Add a state for back button
             }
 
 
             function closeZoom() {
                 document.getElementById('imageOverlay').style.display = 'none';
+                currentViewState = "gallery"; // Or "home" as needed
+                history.back(); // Go back in history to the previous state
             }
             let currentViewState = "home"; // Initialize with the default view
 
@@ -678,8 +676,6 @@
                     //If you want to handle navigation further, you can add your logic here.
                 }
             });
-
-
         </script>
 </body>
 </html>
