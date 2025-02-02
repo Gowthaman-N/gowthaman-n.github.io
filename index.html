@@ -156,7 +156,7 @@
 
 
         footer {
-            position: relative;
+            position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
@@ -169,7 +169,7 @@
             color: white;
             margin-top: auto;
             padding: 15px;
-            z-index: 1000;
+            
         }
 
         #text-container {
@@ -242,8 +242,11 @@
             }
         .close-button-gallery { /* Style for the gallery close button */
             background-color: rgba(0, 0, 0, 0.5);
+            position:fixed;
             color: white;
-            padding: 10px 20px;
+            right:10px;
+            bottom:130px;
+            padding: 20px 20px;
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
@@ -255,7 +258,7 @@
         }
 
         .gallery-container {
-            display: none;
+            display: none;            
             flex-direction: column; /* Align items vertically */
             align-items: center; /* Center items horizontally */
             padding-bottom:0px;
