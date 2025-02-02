@@ -688,9 +688,7 @@
                                              📍1/2 Warp Saree;
                                              📍Perfect for Wedding Season;`,
         };
-
         const spans = document.querySelectorAll('.categories span');
-
         spans.forEach((span, index) => { // Use index for gallery ID
             const link = document.createElement('a');
             link.href = '#';
@@ -699,14 +697,11 @@
             link.addEventListener('click', () => {
                 showGallery(link.getAttribute('data-gallery-id'), span);
                 menu.classList.remove('show');
-            });
-            
+            });            
         });
-
         window.addEventListener('click', function (event) {
             const menu = document.getElementById('myMenu');
             const menuIcon = document.querySelector('.menu-icon');
-
             if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
                 menu.classList.remove('show');
             }
@@ -750,30 +745,10 @@
 
         function closeZoom() {
             document.getElementById('imageOverlay').style.display = 'none';
-            currentViewState = "gallery";
+            currentViewState = "gallery";            
             history.back();
         }
-
-
-        window.addEventListener('popstate', function (event) {
-            if (currentViewState === "overlay") {
-                closeZoom();
-                currentViewState = "gallery"; // Or "home", depending on your logic
-                event.preventDefault();
-            } else if (currentViewState === "gallery") {
-                // Close the gallery
-                document.querySelectorAll('.gallery-container').forEach(gallery => {
-                    gallery.style.display = 'none';
-                });
-                document.querySelectorAll('.categories span').forEach(span => {
-                    span.style.display = 'inline-block';
-                });
-                currentViewState = "home";
-                event.preventDefault();
-            } else if (currentViewState === "home") {
-                //If you want to handle navigation further, you can add your logic here.
-            }
-        });
+              
     </script>
 </body>
 </html>
