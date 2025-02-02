@@ -78,7 +78,6 @@
             .gallery-container img {
                 width: 300px;
                 border-radius: 20px;
-                padding: 20px;
                 cursor: pointer;
                 transition: transform 0.3s;
                 text-align:center;
@@ -112,8 +111,8 @@
         }
 
         .overlay img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 70%;
+            max-height: 70%;
             align-items:center;
             border-radius: 10px;
         }
@@ -585,7 +584,7 @@
                 });
 
                 // Make the clicked span visible (important!)
-                clickedSpan.style.display = 'inline-block';  // Or 'block' if you want them to stack vertically
+                clickedSpan.style.display = 'inline-block'; // Or 'block' if you want them to stack vertically
 
                 //Optional: Add a class to the active span for styling
                 document.querySelectorAll('.categories span').forEach(span => {
@@ -649,31 +648,11 @@
             setInterval(blinkFooter, 5000);
 
             function openZoom(src, description) {
-                document.getElementById('zoomedImage').src = src;
-                const textContainer = document.getElementById('imageText'); // Get the <p> tag
-                textContainer.innerHTML = ""; // Clear any existing text
-
-                // Create spans for each character
-                for (let i = 0; i < description.length; i++) {
-                    const span = document.createElement('span');
-                    span.textContent = description[i];
-                    textContainer.appendChild(span);
-                }
-                let charIndex = 0;
-                function revealText() {
-                    if (charIndex < description.length) {
-                        textContainer.children[charIndex].style.opacity = 1;
-                        textContainer.children[charIndex].style.transform = 'translateY(0)';
-                        charIndex++;
-                        setTimeout(revealText, 50); // Adjust delay as needed
-                    } else {
-                        textContainer.classList.add('reveal');
-                    }
-                }
-                document.getElementById('imageOverlay').style.display = 'flex';
-                revealText(); // Start the reveal effect
-
+                window.open(src, '_blank'); // Open image in a new tab/window
+                // The description can still be used, but it won't be displayed in the popup.
+                // You might want to pass it as a URL parameter and retrieve it on the new page.
             }
+
 
             function closeZoom() {
                 document.getElementById('imageOverlay').style.display = 'none';
