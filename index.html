@@ -17,23 +17,20 @@
         }
 
        
-           header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f0f0f0;
-    padding: 10px;
-    z-index: 100;
-}
-        
+            header {
+     text-align: center;
+     padding: 0;
+     position: fixed; /* Important for positioning the image */
+     overflow: hidden; /* Prevents image overflow */
+     object-position: top;
+ }
 
-            header img {
-                width: 100%; /* Image takes full width of the header */
-                height: auto; /* Height adjusts proportionally to maintain aspect ratio */
-                display: block; /* Prevents small space below the image */
-                object-fit: cover; /* or contain, depending on your needs */
-            }
+     header img {
+         width: 100%; /* Image takes full width of the header */
+         height: auto; /* Height adjusts proportionally to maintain aspect ratio */
+         display: block; /* Prevents small space below the image */
+         object-fit: cover; /* or contain, depending on your needs */
+     }
 
         .categories {
             display: flex;
@@ -74,7 +71,7 @@
             align-items: center;
             text-align: center;
             gap: 20px;
-            height: 100vh;
+            min-height: 100vh;
             /* display: none;*/
             justify-content: flex-start;
             scroll-snap-type: y mandatory;
