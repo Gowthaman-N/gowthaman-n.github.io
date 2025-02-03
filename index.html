@@ -47,7 +47,7 @@
                 color: brown;
                 cursor: pointer;
                 padding: 8px;
-                justify-content:normal;
+                justify-content: normal;
                 background-color: cornsilk;
                 border-radius: 5px;
                 transition: color 0.3s, background-color 0.3s;
@@ -71,7 +71,7 @@
             align-items: center;
             text-align: center;
             gap: 20px;
-            display: none;
+            /* display: none;*/
             justify-content: flex-start;
             scroll-snap-type: y mandatory;
         }
@@ -137,26 +137,26 @@
             z-index: 40; /* Ensure they are above other content */
         }
 
-        .close-buttons button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #4CAF50; /* Green */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-            .close-buttons button:hover {
-                background-color: #45a049;
+            .close-buttons button {
+                padding: 10px 20px;
+                border: none;
+                background-color: #4CAF50; /* Green */
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
             }
 
+                .close-buttons button:hover {
+                    background-color: #45a049;
+                }
 
 
-       /* footer {
+
+        /* footer {
             position: fixed;
             left: 0;
             bottom: 0;
@@ -170,7 +170,7 @@
             color: white;
             margin-top: auto;
             padding: 15px;
-            
+
         }*/
 
         #text-container {
@@ -241,12 +241,13 @@
             .menu.show {
                 display: block; /* Show the menu when the class is present */
             }
+
         .close-button-gallery { /* Style for the gallery close button */
             background-color: rgba(0, 0, 0, 0.5);
-            position:relative;
+            position: relative;
             color: white;
-            align-items:center;
-            bottom:20px;
+            align-items: center;
+            bottom: 20px;
             padding: 20px 20px;
             font-size: 16px;
             border-radius: 5px;
@@ -262,7 +263,7 @@
             display: none;
             flex-direction: column; /* Align items vertically */
             align-items: center; /* Center items horizontally */
-            padding-bottom:0px;
+            padding-bottom: 0px;
         }
     </style>
 </head>
@@ -572,7 +573,7 @@
     <div class="menu-icon" onclick="showHomeScreen()">🏠</div>  <div class="menu" id="myMenu">
         <!--<a href="#" onclick="showHomeScreen()">🏠</a>-->
     </div>
-    
+
     <!--<footer>
         <p>&copy; Select Your Sarees and Call or WhatsApp to 9789056621. We will show you a sample product of the similar or same item @your doorstep!</p>
     </footer>-->
@@ -588,7 +589,7 @@
         let currentGalleryId = null;
         let historyStack = []; // Array to store navigation history
         let historyIndex = -1; // Index of current state in historyStack
-        
+
         function handleNavigation(state) {
             currentViewState = state.view;
             if (state.view === "home") {
@@ -632,7 +633,7 @@
                 closeButtonGallery.classList.add('close-button-gallery'); // Use a separate CSS class
                 closeButtonGallery.addEventListener('click', closeGallery); // New function to close the gallery
 
-                selectedGallery.appendChild(closeButtonGallery);    
+                selectedGallery.appendChild(closeButtonGallery);
             }
         }
         function closeGallery() {
@@ -696,88 +697,88 @@
 
         const descriptions = {
             "Boomika sareeDes": `👉 Priced at just ₹500;
-                                                📍Silk based most affordable Sarees;
-                                                📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
-                                                📍Featuring fully pastel colours;
-                                                📍This limited-edition piece boasts a stylish contrast pallu;`,
+                                                    📍Silk based most affordable Sarees;
+                                                    📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
+                                                    📍Featuring fully pastel colours;
+                                                    📍This limited-edition piece boasts a stylish contrast pallu;`,
             "Full work soft silk sareesDes": `👉 Special Price: Rs 900;
-                                                             📍Full work SOFT SILK  SAREES;
-                                                             📍Fine art silk quality, soft silk material;
-                                                             📍Rich pallu & blouse with contrast;
-                                                             📍Small Zari work motif;
-                                                             📍Copper zari worked, smooth feel;
-                                                             📍Comfortable, lightweight, breathable, durable, versatile;
-                                                             📍Ideal for festivals, weddings, parties, casual drapes beautifully;
-                                                             📍100%  soft silk Sarees;`,
+                                                                 📍Full work SOFT SILK  SAREES;
+                                                                 📍Fine art silk quality, soft silk material;
+                                                                 📍Rich pallu & blouse with contrast;
+                                                                 📍Small Zari work motif;
+                                                                 📍Copper zari worked, smooth feel;
+                                                                 📍Comfortable, lightweight, breathable, durable, versatile;
+                                                                 📍Ideal for festivals, weddings, parties, casual drapes beautifully;
+                                                                 📍100%  soft silk Sarees;`,
             "Semi Kancheepuram silk sareesDes": `👉 Priced at just ₹2000;
-                                                             📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
-                                                             📍Pure Silk based Hologram design;
-                                                             📍With Best Complimentary Premium box packing For Saree;`,
+                                                                 📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
+                                                                 📍Pure Silk based Hologram design;
+                                                                 📍With Best Complimentary Premium box packing For Saree;`,
             "Luxury soft silk sareesDes": `👉 SPECIAL PRICE ₹1500;
-                                                             📍LUXURY SOFT SILK;
-                                                             📍Pure Mix soft silk sarees;
-                                                             📍Double warp & luxury silk yarn mixed;
-                                                             📍Rich pallu with contrast blouse;
-                                                             📍All over putta work saree;
-                                                             📍Design border;
-                                                             📍1st quality pure pattu saree collection type;
-                                                             📍NOTE👉🏻 Dry wash only;
-                                                             📍#PURE PATTU SOFT SILK Double tone look;
-                                                             📍MARKET PRICE 8000+;`,
+                                                                 📍LUXURY SOFT SILK;
+                                                                 📍Pure Mix soft silk sarees;
+                                                                 📍Double warp & luxury silk yarn mixed;
+                                                                 📍Rich pallu with contrast blouse;
+                                                                 📍All over putta work saree;
+                                                                 📍Design border;
+                                                                 📍1st quality pure pattu saree collection type;
+                                                                 📍NOTE👉🏻 Dry wash only;
+                                                                 📍#PURE PATTU SOFT SILK Double tone look;
+                                                                 📍MARKET PRICE 8000+;`,
             "New Soft check silk sareesDes": `👉 Price: Rs 890;
-                                                             📍Art Silk in checked;
-                                                             📍Fully Motif Work;
-                                                             📍Full Body stone;
-                                                             📍High-Quality Materials;
-                                                             📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
+                                                                 📍Art Silk in checked;
+                                                                 📍Fully Motif Work;
+                                                                 📍Full Body stone;
+                                                                 📍High-Quality Materials;
+                                                                 📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
             "Premium & royal soft silk sareesDes": `👉 Price: ₹900;
-                                                             📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
-                                                             📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
-                                                             📍Pairs with contrast  blouse;
-                                                             📍A exclusive boutique collection;`,
+                                                                 📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
+                                                                 📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
+                                                                 📍Pairs with contrast  blouse;
+                                                                 📍A exclusive boutique collection;`,
             "Premium Double Warp-kanji sareesDes": `👉 Special Sale :2000 Rs;
-                                                                 📍Premium Double Warp;
-                                                                 📍Semi kanchipuram Sarees;
-                                                                 📍Handloom type made;
-                                                                 📍Soft silk;
-                                                                 📍Two jari work saree;
-                                                                 📍Copper Jari;`,
+                                                                     📍Premium Double Warp;
+                                                                     📍Semi kanchipuram Sarees;
+                                                                     📍Handloom type made;
+                                                                     📍Soft silk;
+                                                                     📍Two jari work saree;
+                                                                     📍Copper Jari;`,
             "Rich Cotton SareeDes": `👉 Best Price ever : 900 Rs;
-                                                         📍Rich Cotton Saree;
-                                                         📍Power loom;
-                                                         📍Kotta cotton;
-                                                         📍Rich pallu;
-                                                         📍1St Quality;
-                                                         📍Contrast border;
-                                                         📍Contrast Blouse;`,
+                                                             📍Rich Cotton Saree;
+                                                             📍Power loom;
+                                                             📍Kotta cotton;
+                                                             📍Rich pallu;
+                                                             📍1St Quality;
+                                                             📍Contrast border;
+                                                             📍Contrast Blouse;`,
             "Soft silk saree- Affordable priceDes": `👉 Price:  550 Rs;
-                                                             📍Soft Silk Saree;
-                                                             📍Art silk weaving;
-                                                             📍Pure motif;
-                                                             📍Pink copper jari;
-                                                             📍Jacquard Border;
-                                                             📍Watt Butta saree;`,
+                                                                 📍Soft Silk Saree;
+                                                                 📍Art silk weaving;
+                                                                 📍Pure motif;
+                                                                 📍Pink copper jari;
+                                                                 📍Jacquard Border;
+                                                                 📍Watt Butta saree;`,
             "Two Work sareesDes": `👉 Best Price : 900 Rs;
-                                                 📍Bridal Silk Saree;
-                                                 📍Two work saree;
-                                                 📍Half and half model;
-                                                 📍Two design Two colours in single sareee;
-                                                 📍Art silk weaving;
-                                                 📍Arni Made;
-                                                 📍Fully processed;
-                                                 📍Gold, copper jari;
-                                                 📍Two weave;
-                                                 📍Blouse and contrast pallu;`,
+                                                     📍Bridal Silk Saree;
+                                                     📍Two work saree;
+                                                     📍Half and half model;
+                                                     📍Two design Two colours in single sareee;
+                                                     📍Art silk weaving;
+                                                     📍Arni Made;
+                                                     📍Fully processed;
+                                                     📍Gold, copper jari;
+                                                     📍Two weave;
+                                                     📍Blouse and contrast pallu;`,
             "Vaira oosi designDes": `👉 Offer Price 950 Rs;
-                                                 📍Limited Edition Trending Vaira Oosi Design;
-                                                 📍Luxurious soft silk saree;
-                                                 📍Vibrant Motifs;
-                                                 📍Rich pallu;
-                                                 📍1St Quality;
-                                                 📍Fine quality zari;
-                                                 📍Contrast Blouse;
-                                                 📍1/2 Warp Saree;
-                                                 📍Perfect for Wedding Season;`,
+                                                     📍Limited Edition Trending Vaira Oosi Design;
+                                                     📍Luxurious soft silk saree;
+                                                     📍Vibrant Motifs;
+                                                     📍Rich pallu;
+                                                     📍1St Quality;
+                                                     📍Fine quality zari;
+                                                     📍Contrast Blouse;
+                                                     📍1/2 Warp Saree;
+                                                     📍Perfect for Wedding Season;`,
         };
         const spans = document.querySelectorAll('.categories span');
         spans.forEach((span, index) => { // Use index for gallery ID
@@ -797,7 +798,7 @@
                 menu.classList.remove('show');
             }
         });
-        
+
 
         //const footer = document.querySelector('footer');
 
@@ -808,16 +809,16 @@
         //    }, 200);
         //}
 
-       /* setInterval(blinkFooter, 5000);*/
+        /* setInterval(blinkFooter, 5000);*/
 
         function openZoom(src, descriptionKey) {
             const overlay = document.getElementById('imageOverlay');
             const overlayImage = document.getElementById('overlayImage');
             const overlayDescription = document.getElementById('overlayDescription');
-            const closeButton = document.createElement('span');            
+            const closeButton = document.createElement('span');
             closeButton.textContent = 'CLOSE';
-            
-            closeButton.style.position = 'fixed';            
+
+            closeButton.style.position = 'fixed';
             closeButton.style.bottom = '10px';
             closeButton.style.left = '50%'; // Center horizontally
             closeButton.style.transform = 'translateX(-50%)';
@@ -840,7 +841,7 @@
                     overlayImage.src = src;
                     overlayDescription.innerHTML = formattedDescription;
                     overlay.style.display = 'flex';
-                    overlayDescription.style.textAlign = 'justify'; 
+                    overlayDescription.style.textAlign = 'justify';
                     overlayDescription.style.marginBottom = '40px' // Add margin below the description
                     closeButton.addEventListener('click', closeZoom);
 
@@ -850,7 +851,7 @@
             } else {
                 console.error("One or more overlay elements not found!");
             }
-            currentViewState = "overlay";           
+            currentViewState = "overlay";
         }
 
         function closeZoom() {
@@ -863,7 +864,7 @@
             currentViewState = "gallery";
             history.back();
             historyStack.pop();
-            historyIndex--;         
+            historyIndex--;
         }
 
 
