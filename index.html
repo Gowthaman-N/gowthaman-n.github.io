@@ -599,29 +599,7 @@
                     gallery.style.display = 'none';
                 });
             });
-            const exitButton = document.createElement('span');
-            exitButton.textContent = 'EXIT';
-            exitButton.id = 'exitButton'; // Give it an ID for styling if needed
-            exitButton.style.position = 'relative'; // or absolute, depending on your layout
-            exitButton.style.bottom = '10px'; // Adjust position as needed
-            exitButton.style.left = '40%'; // Adjust position as needed
-            exitButton.style.padding = '0px 20px';
-            exitButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Example styling (red)
-            exitButton.style.color = 'white';
-            exitButton.style.transform = 'translateX(-50%)';           
-            exitButton.style.width = '90px';
-            exitButton.style.height = '30px';
-            exitButton.style.cursor = 'pointer';
-            exitButton.style.textAlign = 'center';
-            exitButton.style.fontSize = '25px'
-            document.body.appendChild(exitButton); // Add it to the page
 
-            
-
-            exitButton.addEventListener('click', exitWebsite);   
-            function exitWebsite() {
-                window.close();
-            }
             let currentViewState = "home";
             let currentGalleryId = null;
 
