@@ -581,292 +581,276 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll('.gallery-container').forEach(gallery => {
-                gallery.style.display = 'none';
-            });
-        });
+     document.querySelectorAll('.gallery-container').forEach(gallery => {
+         gallery.style.display = 'none';
+     });
+ });
 
-        let currentViewState = "home";
-        let currentGalleryId = null;
-        let historyStack = []; // Array to store navigation history
-        let historyIndex = -1; // Index of current state in historyStack
+ let currentViewState = "home";
+ let currentGalleryId = null;
 
-        function handleNavigation(state) {
-            currentViewState = state.view;
-            if (state.view === "home") {
-                showHomeScreen();
-            } else if (state.view === "gallery") {
-                showGallery(state.galleryId, document.querySelector(`.categories span:nth-child(${state.categoryIndex + 1})`)); // Pass the span element
-            } else if (state.view === "overlay") {
-                openZoom(state.imageSrc, state.descriptionKey);
-            }
-        }
+ function handleNavigation(state) {
+     currentViewState = state.view;
+     if (state.view === "home") {
+         showHomeScreen();
+     } else if (state.view === "gallery") {
+         showGallery(state.galleryId, document.querySelector(`.categories span:nth-child(${state.categoryIndex + 1})`));
+     } else if (state.view === "overlay") {
+         openZoom(state.imageSrc, state.descriptionKey);
+     }
+ }
 
-        function showGallery(id, clickedSpan) {
-            document.querySelectorAll('.gallery-container').forEach(gallery => {
-                gallery.style.display = 'none';
-            });
+ function showGallery(id, clickedSpan) {
+     document.querySelectorAll('.gallery-container').forEach(gallery => {
+         gallery.style.display = 'none';
+     });
 
-            document.querySelectorAll('.categories span').forEach(span => {
-                if (span !== clickedSpan) {
-                    span.style.display = 'none';
-                }
-            });
+     document.querySelectorAll('.categories span').forEach(span => {
+         if (span !== clickedSpan) {
+             span.style.display = 'none';
+         }
+     });
 
-            clickedSpan.style.display = 'inline-block';
+     clickedSpan.style.display = 'inline-block';
 
-            document.querySelectorAll('.categories span').forEach(span => {
-                span.classList.remove('active');
-            });
-            clickedSpan.classList.add('active');
+     document.querySelectorAll('.categories span').forEach(span => {
+         span.classList.remove('active');
+     });
+     clickedSpan.classList.add('active');
 
-            const selectedGallery = document.getElementById('gallery' + id);
-            if (selectedGallery) {
-                selectedGallery.style.display = 'flex';
-                currentViewState = "gallery";
-                currentGalleryId = id;
-                const categoryIndex = Array.from(document.querySelectorAll('.categories span')).indexOf(clickedSpan);
-                historyStack = historyStack.slice(0, historyIndex + 1); // Clear forward history
-                historyStack.push({ view: "gallery", galleryId: id, categoryIndex: categoryIndex });
-                historyIndex++;
-                const closeButtonGallery = document.createElement('span');
-                closeButtonGallery.textContent = 'Close Gallery';
-                closeButtonGallery.classList.add('close-button-gallery'); // Use a separate CSS class
-                closeButtonGallery.addEventListener('click', closeGallery); // New function to close the gallery
+     const selectedGallery = document.getElementById('gallery' + id);
+     if (selectedGallery) {
+         selectedGallery.style.display = 'flex';
+         currentViewState = "gallery";
+         currentGalleryId = id;
+         const categoryIndex = Array.from(document.querySelectorAll('.categories span')).indexOf(clickedSpan);
 
-                selectedGallery.appendChild(closeButtonGallery);
-            }
-        }
-        function closeGallery() {
-            const selectedGallery = document.getElementById('gallery' + currentGalleryId); // Get the current gallery
-            if (selectedGallery) {
-                selectedGallery.style.display = 'none'; // Hide the gallery
-                const closeButtonGallery = selectedGallery.querySelector('.close-button-gallery'); //Find the button
-                if (closeButtonGallery) {
-                    selectedGallery.removeChild(closeButtonGallery); // Remove the button
-                }
+         // Remove existing close button if any
+         const existingCloseButton = selectedGallery.querySelector('.close-button-gallery');
+         if (existingCloseButton) {
+             selectedGallery.removeChild(existingCloseButton);
+         }
 
-                document.querySelectorAll('.categories span').forEach(span => {
-                    span.style.display = 'inline-block';
-                });
-                document.querySelectorAll('.categories span').forEach(span => {
-                    span.classList.remove('active');
-                });
+         const closeButtonGallery = document.createElement('span');
+         closeButtonGallery.textContent = 'Close Gallery';
+         closeButtonGallery.classList.add('close-button-gallery');
+         closeButtonGallery.addEventListener('click', closeGallery);
 
-                currentViewState = "home";
-                currentGalleryId = null;
-                historyStack = historyStack.slice(0, historyIndex + 1);
-                historyStack.push({ view: "home" });
-                historyIndex++;
-                window.history.pushState({ view: "home" }, "", "/");
+         selectedGallery.appendChild(closeButtonGallery);
+     }
+ }
 
-            }
-        }
+ function closeGallery() {
+     const selectedGallery = document.getElementById('gallery' + currentGalleryId);
+     if (selectedGallery) {
+         selectedGallery.style.display = 'none';
 
-        function toggleMenu() {
-            const menu = document.getElementById('myMenu');
-            menu.classList.toggle('show');
-        }
+         const closeButtonGallery = selectedGallery.querySelector('.close-button-gallery');
+         if (closeButtonGallery) {
+             selectedGallery.removeChild(closeButtonGallery);
+         }
 
-        function showHomeScreen() {
-            document.querySelectorAll('.gallery-container').forEach(gallery => {
-                gallery.style.display = 'none';
-            });
+         document.querySelectorAll('.categories span').forEach(span => {
+             span.style.display = 'inline-block';
+         });
+         document.querySelectorAll('.categories span').forEach(span => {
+             span.classList.remove('active');
+         });
 
-            document.querySelectorAll('.categories span').forEach(span => {
-                span.style.display = 'inline-block';
-            });
+         currentViewState = "home";
+         currentGalleryId = null;
+     }
+ }
 
-            const menu = document.getElementById('myMenu');
-            menu.classList.remove('show');
+ function toggleMenu() {
+     const menu = document.getElementById('myMenu');
+     menu.classList.toggle('show');
+ }
 
-            //currentViewState = "home";
-            //currentGalleryId = null;
-            //historyStack = historyStack.slice(0, historyIndex + 1); // Clear forward history
-            //historyStack.push({ view: "home" });
-            //historyIndex++;
+ function showHomeScreen() {
+     document.querySelectorAll('.gallery-container').forEach(gallery => {
+         gallery.style.display = 'none';
+     });
 
-            // Correct URL handling for the home screen:
-            if (window.location.pathname !== "/") {
-                window.history.pushState({ view: "home" }, "", "/");
-            } else if (window.location.hash) { //If already on home page and has a hash
-                window.history.pushState({ view: "home" }, "", "/#home");
-            } else {
-                window.history.replaceState({ view: "home" }, "", "/"); // Use replaceState to avoid extra history entry
-            }
-        }
+     document.querySelectorAll('.categories span').forEach(span => {
+         span.style.display = 'inline-block';
+     });
 
-        const descriptions = {
-            "Boomika sareeDes": `👉 Priced at just ₹500;
-                                                    📍Silk based most affordable Sarees;
-                                                    📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
-                                                    📍Featuring fully pastel colours;
-                                                    📍This limited-edition piece boasts a stylish contrast pallu;`,
-            "Full work soft silk sareesDes": `👉 Special Price: Rs 900;
-                                                                 📍Full work SOFT SILK  SAREES;
-                                                                 📍Fine art silk quality, soft silk material;
-                                                                 📍Rich pallu & blouse with contrast;
-                                                                 📍Small Zari work motif;
-                                                                 📍Copper zari worked, smooth feel;
-                                                                 📍Comfortable, lightweight, breathable, durable, versatile;
-                                                                 📍Ideal for festivals, weddings, parties, casual drapes beautifully;
-                                                                 📍100%  soft silk Sarees;`,
-            "Semi Kancheepuram silk sareesDes": `👉 Priced at just ₹2000;
-                                                                 📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
-                                                                 📍Pure Silk based Hologram design;
-                                                                 📍With Best Complimentary Premium box packing For Saree;`,
-            "Luxury soft silk sareesDes": `👉 SPECIAL PRICE ₹1500;
-                                                                 📍LUXURY SOFT SILK;
-                                                                 📍Pure Mix soft silk sarees;
-                                                                 📍Double warp & luxury silk yarn mixed;
-                                                                 📍Rich pallu with contrast blouse;
-                                                                 📍All over putta work saree;
-                                                                 📍Design border;
-                                                                 📍1st quality pure pattu saree collection type;
-                                                                 📍NOTE👉🏻 Dry wash only;
-                                                                 📍#PURE PATTU SOFT SILK Double tone look;
-                                                                 📍MARKET PRICE 8000+;`,
-            "New Soft check silk sareesDes": `👉 Price: Rs 890;
-                                                                 📍Art Silk in checked;
-                                                                 📍Fully Motif Work;
-                                                                 📍Full Body stone;
-                                                                 📍High-Quality Materials;
-                                                                 📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
-            "Premium & royal soft silk sareesDes": `👉 Price: ₹900;
-                                                                 📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
-                                                                 📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
-                                                                 📍Pairs with contrast  blouse;
-                                                                 📍A exclusive boutique collection;`,
-            "Premium Double Warp-kanji sareesDes": `👉 Special Sale :2000 Rs;
-                                                                     📍Premium Double Warp;
-                                                                     📍Semi kanchipuram Sarees;
-                                                                     📍Handloom type made;
-                                                                     📍Soft silk;
-                                                                     📍Two jari work saree;
-                                                                     📍Copper Jari;`,
-            "Rich Cotton SareeDes": `👉 Best Price ever : 900 Rs;
-                                                             📍Rich Cotton Saree;
-                                                             📍Power loom;
-                                                             📍Kotta cotton;
-                                                             📍Rich pallu;
-                                                             📍1St Quality;
-                                                             📍Contrast border;
-                                                             📍Contrast Blouse;`,
-            "Soft silk saree- Affordable priceDes": `👉 Price:  550 Rs;
-                                                                 📍Soft Silk Saree;
-                                                                 📍Art silk weaving;
-                                                                 📍Pure motif;
-                                                                 📍Pink copper jari;
-                                                                 📍Jacquard Border;
-                                                                 📍Watt Butta saree;`,
-            "Two Work sareesDes": `👉 Best Price : 900 Rs;
-                                                     📍Bridal Silk Saree;
-                                                     📍Two work saree;
-                                                     📍Half and half model;
-                                                     📍Two design Two colours in single sareee;
-                                                     📍Art silk weaving;
-                                                     📍Arni Made;
-                                                     📍Fully processed;
-                                                     📍Gold, copper jari;
-                                                     📍Two weave;
-                                                     📍Blouse and contrast pallu;`,
-            "Vaira oosi designDes": `👉 Offer Price 950 Rs;
-                                                     📍Limited Edition Trending Vaira Oosi Design;
-                                                     📍Luxurious soft silk saree;
-                                                     📍Vibrant Motifs;
-                                                     📍Rich pallu;
-                                                     📍1St Quality;
-                                                     📍Fine quality zari;
-                                                     📍Contrast Blouse;
-                                                     📍1/2 Warp Saree;
-                                                     📍Perfect for Wedding Season;`,
-        };
-        const spans = document.querySelectorAll('.categories span');
-        spans.forEach((span, index) => { // Use index for gallery ID
-            const link = document.createElement('a');
-            link.href = '#';
-            link.textContent = span.textContent;
-            link.setAttribute('data-gallery-id', index + 1); // Correct gallery ID assignment
-            link.addEventListener('click', () => {
-                showGallery(link.getAttribute('data-gallery-id'), span);
-                menu.classList.remove('show');
-            });
-        });
-        window.addEventListener('click', function (event) {
-            const menu = document.getElementById('myMenu');
-            const menuIcon = document.querySelector('.menu-icon');
-            if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
-                menu.classList.remove('show');
-            }
-        });
+     const menu = document.getElementById('myMenu');
+     menu.classList.remove('show');
+
+     if (window.location.pathname !== "/") {
+         window.history.pushState({ view: "home" }, "", "/");
+     } else if (window.location.hash) {
+         window.history.pushState({ view: "home" }, "", "/#home");
+     } else {
+         window.history.replaceState({ view: "home" }, "", "/");
+     }
+ }
+ const descriptions = {
+     "Boomika sareeDes": `👉 Priced at just ₹500;
+                                             📍Silk based most affordable Sarees;
+                                             📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
+                                             📍Featuring fully pastel colours;
+                                             📍This limited-edition piece boasts a stylish contrast pallu;`,
+     "Full work soft silk sareesDes": `👉 Special Price: Rs 900;
+                                                          📍Full work SOFT SILK  SAREES;
+                                                          📍Fine art silk quality, soft silk material;
+                                                          📍Rich pallu & blouse with contrast;
+                                                          📍Small Zari work motif;
+                                                          📍Copper zari worked, smooth feel;
+                                                          📍Comfortable, lightweight, breathable, durable, versatile;
+                                                          📍Ideal for festivals, weddings, parties, casual drapes beautifully;
+                                                          📍100%  soft silk Sarees;`,
+     "Semi Kancheepuram silk sareesDes": `👉 Priced at just ₹2000;
+                                                          📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
+                                                          📍Pure Silk based Hologram design;
+                                                          📍With Best Complimentary Premium box packing For Saree;`,
+     "Luxury soft silk sareesDes": `👉 SPECIAL PRICE ₹1500;
+                                                          📍LUXURY SOFT SILK;
+                                                          📍Pure Mix soft silk sarees;
+                                                          📍Double warp & luxury silk yarn mixed;
+                                                          📍Rich pallu with contrast blouse;
+                                                          📍All over putta work saree;
+                                                          📍Design border;
+                                                          📍1st quality pure pattu saree collection type;
+                                                          📍NOTE👉🏻 Dry wash only;
+                                                          📍#PURE PATTU SOFT SILK Double tone look;
+                                                          📍MARKET PRICE 8000+;`,
+     "New Soft check silk sareesDes": `👉 Price: Rs 890;
+                                                          📍Art Silk in checked;
+                                                          📍Fully Motif Work;
+                                                          📍Full Body stone;
+                                                          📍High-Quality Materials;
+                                                          📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
+     "Premium & royal soft silk sareesDes": `👉 Price: ₹900;
+                                                          📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
+                                                          📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
+                                                          📍Pairs with contrast  blouse;
+                                                          📍A exclusive boutique collection;`,
+     "Premium Double Warp-kanji sareesDes": `👉 Special Sale :2000 Rs;
+                                                              📍Premium Double Warp;
+                                                              📍Semi kanchipuram Sarees;
+                                                              📍Handloom type made;
+                                                              📍Soft silk;
+                                                              📍Two jari work saree;
+                                                              📍Copper Jari;`,
+     "Rich Cotton SareeDes": `👉 Best Price ever : 900 Rs;
+                                                      📍Rich Cotton Saree;
+                                                      📍Power loom;
+                                                      📍Kotta cotton;
+                                                      📍Rich pallu;
+                                                      📍1St Quality;
+                                                      📍Contrast border;
+                                                      📍Contrast Blouse;`,
+     "Soft silk saree- Affordable priceDes": `👉 Price:  550 Rs;
+                                                          📍Soft Silk Saree;
+                                                          📍Art silk weaving;
+                                                          📍Pure motif;
+                                                          📍Pink copper jari;
+                                                          📍Jacquard Border;
+                                                          📍Watt Butta saree;`,
+     "Two Work sareesDes": `👉 Best Price : 900 Rs;
+                                              📍Bridal Silk Saree;
+                                              📍Two work saree;
+                                              📍Half and half model;
+                                              📍Two design Two colours in single sareee;
+                                              📍Art silk weaving;
+                                              📍Arni Made;
+                                              📍Fully processed;
+                                              📍Gold, copper jari;
+                                              📍Two weave;
+                                              📍Blouse and contrast pallu;`,
+     "Vaira oosi designDes": `👉 Offer Price 950 Rs;
+                                              📍Limited Edition Trending Vaira Oosi Design;
+                                              📍Luxurious soft silk saree;
+                                              📍Vibrant Motifs;
+                                              📍Rich pallu;
+                                              📍1St Quality;
+                                              📍Fine quality zari;
+                                              📍Contrast Blouse;
+                                              📍1/2 Warp Saree;
+                                              📍Perfect for Wedding Season;`,
+ };
+ const spans = document.querySelectorAll('.categories span');
+ spans.forEach((span, index) => {
+     const link = document.createElement('a');
+     link.href = '#';
+     link.textContent = span.textContent;
+     link.setAttribute('data-gallery-id', index + 1);
+     link.addEventListener('click', () => {
+         showGallery(link.getAttribute('data-gallery-id'), span);
+         menu.classList.remove('show');
+     });
+ });
+
+ window.addEventListener('click', function (event) {
+     const menu = document.getElementById('myMenu');
+     const menuIcon = document.querySelector('.menu-icon');
+     if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+         menu.classList.remove('show');
+     }
+ });
 
 
-        //const footer = document.querySelector('footer');
+ function openZoom(src, descriptionKey) {
+     const overlay = document.getElementById('imageOverlay');
+     const overlayImage = document.getElementById('overlayImage');
+     const overlayDescription = document.getElementById('overlayDescription');
 
-        //function blinkFooter() {
-        //    footer.style.opacity = 0;
-        //    setTimeout(() => {
-        //        footer.style.opacity = 5;
-        //    }, 200);
-        //}
+     // Remove existing close button if any
+     const existingCloseButton = overlay.querySelector('#closeButton');
+     if (existingCloseButton) {
+         overlay.removeChild(existingCloseButton);
+     }
 
-        /* setInterval(blinkFooter, 5000);*/
 
-        function openZoom(src, descriptionKey) {
-            const overlay = document.getElementById('imageOverlay');
-            const overlayImage = document.getElementById('overlayImage');
-            const overlayDescription = document.getElementById('overlayDescription');
-            const closeButton = document.createElement('span');
-            closeButton.textContent = 'CLOSE';
+     const closeButton = document.createElement('span');
+     closeButton.textContent = 'CLOSE';
+     closeButton.style.position = 'fixed';
+     closeButton.style.bottom = '10px';
+     closeButton.style.left = '50%';
+     closeButton.style.transform = 'translateX(-50%)';
+     closeButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+     closeButton.style.color = 'white';
+     closeButton.style.padding = '10px 20px';
+     closeButton.style.fontSize = '25px';
+     closeButton.style.width = '100px';
+     closeButton.style.height = '40px';
+     closeButton.style.borderRadius = '5px';
+     closeButton.style.cursor = 'pointer';
+     closeButton.id = 'closeButton';
+     overlay.appendChild(closeButton);
 
-            closeButton.style.position = 'fixed';
-            closeButton.style.bottom = '10px';
-            closeButton.style.left = '50%'; // Center horizontally
-            closeButton.style.transform = 'translateX(-50%)';
-            closeButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Semi-transparent background
-            closeButton.style.color = 'white';
-            closeButton.style.padding = '10px 20px';
-            closeButton.style.fontSize = '25px'
-            closeButton.style.width = '100px';
-            closeButton.style.height = '40px';
-            closeButton.style.borderRadius = '5px';
-            closeButton.style.cursor = 'pointer';
-            closeButton.id = 'closeButton';
-            overlay.appendChild(closeButton);
-            if (overlay && overlayImage && overlayDescription) {
-                const description = descriptions[descriptionKey];
+     if (overlay && overlayImage && overlayDescription) {
+         const description = descriptions[descriptionKey];
+         if (description) {
+             const lines = description.split(";");
+             const formattedDescription = lines.join("<br>");
+             overlayImage.src = src;
+             overlayDescription.innerHTML = formattedDescription;
+             overlay.style.display = 'flex';
+             overlayDescription.style.textAlign = 'justify';
+             overlayDescription.style.marginBottom = '40px';
+             closeButton.addEventListener('click', closeZoom);
+         } else {
+             console.error("Description not found for key:", descriptionKey);
+         }
+     } else {
+         console.error("One or more overlay elements not found!");
+     }
+     currentViewState = "overlay";
+ }
 
-                if (description) {
-                    const lines = description.split(";");
-                    const formattedDescription = lines.join("<br>");
-                    overlayImage.src = src;
-                    overlayDescription.innerHTML = formattedDescription;
-                    overlay.style.display = 'flex';
-                    overlayDescription.style.textAlign = 'justify';
-                    overlayDescription.style.marginBottom = '40px' // Add margin below the description
-                    closeButton.addEventListener('click', closeZoom);
-
-                } else {
-                    console.error("Description not found for key:", descriptionKey);
-                }
-            } else {
-                console.error("One or more overlay elements not found!");
-            }
-            currentViewState = "overlay";
-        }
-
-        function closeZoom() {
-            const overlay = document.getElementById('imageOverlay');
-            const closeButton = document.getElementById('closeButton'); // Get the close button
-
-            overlay.style.display = 'none';
-            overlay.removeChild(closeButton); // Remove the close button when closing
-
-            currentViewState = "gallery";
-            history.back();
-            historyStack.pop();
-            historyIndex--;
-        }
+ function closeZoom() {
+     const overlay = document.getElementById('imageOverlay');
+     const closeButton = document.getElementById('closeButton');
+     overlay.style.display = 'none';
+     if (closeButton) {
+         overlay.removeChild(closeButton);
+     }
+     currentViewState = "gallery";
+ }
 
 
     </script>
