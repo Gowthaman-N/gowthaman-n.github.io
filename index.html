@@ -243,10 +243,10 @@
             }
         .close-button-gallery { /* Style for the gallery close button */
             background-color: rgba(0, 0, 0, 0.5);
-            position:fixed;
+            position:relative;
             color: white;
-            right:10px;
-            bottom:130px;
+            align-items:center;
+            bottom:20px;
             padding: 20px 20px;
             font-size: 16px;
             border-radius: 5px;
@@ -850,11 +850,7 @@
             } else {
                 console.error("One or more overlay elements not found!");
             }
-            currentViewState = "overlay";
-            historyStack = historyStack.slice(0, historyIndex + 1); // Clear forward history
-            historyStack.push({ view: "overlay", imageSrc: src, descriptionKey: descriptionKey });
-            historyIndex++;
-            
+            currentViewState = "overlay";           
         }
 
         function closeZoom() {
