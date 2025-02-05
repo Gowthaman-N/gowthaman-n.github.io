@@ -261,9 +261,69 @@
 
         .gallery-container {
             display: none;
-            flex-direction: column; /* Align items vertically */
-            align-items: center; /* Center items horizontally */
-            padding-bottom: 0px;
+            grid-template-columns: repeat(2, 1fr);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+            .gallery-container img {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 100%; /* Image takes full width of its grid cell */
+                height: auto; /* Maintain aspect ratio */
+                cursor: pointer;
+                display: block; /* Needed for vertical alignment */
+            } 
+        .image-container {
+            display: inline-block;
+            margin: 10px;
+            position: relative; /* Needed for absolute positioning of price */
+        }
+
+        .image-details {
+            position: absolute; /* Position at the bottom right */
+            bottom: 10px; /* Adjust spacing from bottom */
+            right: 10px; /* Adjust spacing from right */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .image-price {
+            /* Style the price as needed */
+            font-weight: bold;
+            font-family:Cooper;
+            font-size:28px;
+        }
+        .whatsapp-link {
+            position: fixed;
+            bottom: 20px; /* Adjust as needed */
+            right: 20px; /* Adjust as needed */
+            display: block; /* Make it a block element for proper sizing */
+            width: 60px; /* Adjust icon size */
+            height: 60px; /* Adjust icon size */
+            z-index: 1000; /* Ensure it's above other elements */
+        }
+
+        .whatsapp-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Maintain aspect ratio and fit within container */
+        }
+        .call-link {
+            position: fixed;
+            bottom: 90px; /* Adjust position relative to WhatsApp icon */
+            right: 20px; /* Same horizontal position as WhatsApp icon */
+            display: block;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        .call-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -271,7 +331,8 @@
     <header>
         <h1><img src="Images/BGMNew1_enhanced.png" /></h1>
     </header>
-
+    <a class="whatsapp-link" href="https://wa.me/+919789056621?text=" target="_blank">  <img class="whatsapp-icon" src="Images/whatsapp1.png" alt="WhatsApp">  </a>
+    <a class="call-link" href="tel:+919789056621">  <img class="call-icon" src="Images/callIcon.png" alt="Call">  </a>
     <div class="categories">
         <span onclick="showGallery(1,this)">Boomika Sarees</span>
         <span onclick="showGallery(2,this)">Full work soft silk sarees</span>
@@ -288,295 +349,1066 @@
     </div>
 
     <div class="gallery-container" id="gallery1">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0215.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0216.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0217.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0218.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0219.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0220.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0221.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0222.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0223.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0224.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
-        <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0212.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0213.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0214.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0215.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0216.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0217.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0218.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0219.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0220.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0221.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0222.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0223.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0224.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Boomika Sarees/IMG-20250126-WA0225.jpg" onclick="openZoom(this.src, 'Boomika sareeDes')">
+            <span class="image-price">₹550</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery2">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0180.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0181.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0182.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0183.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0184.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0185.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0186.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0187.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0188.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0189.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0190.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0191.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0192.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0193.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0194.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0195.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0196.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0197.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0198.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0199.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
-        <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0200.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0180.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0181.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0182.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0183.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0184.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0185.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0186.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0187.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0188.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0189.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0190.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0191.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0192.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0193.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0194.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0195.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0196.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0197.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0198.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0199.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Full work Soft Silk Sarees/IMG-20250126-WA0200.jpg" onclick="openZoom(this.src, 'Full work soft silk sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery3">
-        <img src="Images/Kancheepuram Sarees/Saree1.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/saree2.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree3.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree4.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree5.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree6.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree7.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree8.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree9.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree10.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree11.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree12.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree13.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree14.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree15.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
-        <img src="Images/Kancheepuram Sarees/Saree17.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree1.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/saree2.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree3.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree4.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree5.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree6.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree7.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree8.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree9.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree10.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree11.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree12.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree13.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree14.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree15.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Kancheepuram Sarees/Saree17.jpg" onclick="openZoom(this.src, 'Semi Kancheepuram silk sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery4">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0010.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0011.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0012.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0013.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0014.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0015.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0016.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0017.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0018.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0019.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0020.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0021.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0022.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0023.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0024.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0025.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0026.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0027.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0028.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0029.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0030.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0031.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0032.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0033.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0034.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0036.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0037.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0038.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0039.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0040.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0041.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0042.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
-        <img src="Images/Luxury soft silks/IMG-20250126-WA0043.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0010.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0011.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0012.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0013.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0014.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0015.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0016.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0017.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0018.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0019.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0020.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0021.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0022.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0023.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0024.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0025.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0026.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0027.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0028.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0029.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0030.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0031.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0032.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0033.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0034.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0036.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0037.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0038.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0039.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0040.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0041.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0042.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Luxury soft silks/IMG-20250126-WA0043.jpg" onclick="openZoom(this.src, 'Luxury soft silk sareesDes')">
+            <span class="image-price">₹1500</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery5">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0201.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0202.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0203.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0204.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0205.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0206.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0207.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0208.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0209.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0210.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
-        <img src="Images/New  soft check silk sarees/IMG-20250126-WA0211.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0201.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0202.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0203.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0204.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0205.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0206.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0207.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0208.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0209.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0210.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/New  soft check silk sarees/IMG-20250126-WA0211.jpg" onclick="openZoom(this.src, 'New Soft check silk sareesDes')">
+            <span class="image-price">₹890</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery6">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0124.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0125.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0126.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0127.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0128.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0129.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0130.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0131.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0132.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0133.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0134.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0135.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0136.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0137.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0138.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0139.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0140.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0141.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0142.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0143.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0144.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0145.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0146.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0147.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0148.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
-        <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0149.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0124.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0125.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0126.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0127.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0128.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0129.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0130.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0131.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0132.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0133.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0134.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0135.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0136.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0137.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0138.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0139.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0140.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0141.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0142.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0143.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0144.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0145.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0146.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0147.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0148.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium & royal soft silk Sarees/IMG-20250126-WA0149.jpg" onclick="openZoom(this.src, 'Premium & royal soft silk sareesDes')">
+            <span class="image-price">₹900</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery7">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0079.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0080.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0081.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0082.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0083.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0084.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0085.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0086.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0087.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0088.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0089.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0090.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0091.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0092.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0093.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0094.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0095.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0096.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0097.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0098.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0099.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0100.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0101.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0102.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0103.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0104.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0105.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0106.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0107.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0108.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0109.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0110.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0111.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0112.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0113.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0114.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0115.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0116.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0117.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0118.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0119.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0120.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0121.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0122.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
-        <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0123.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0079.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0080.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0081.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0082.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0083.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0084.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0085.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0086.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0087.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0088.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0089.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0090.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0091.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0092.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0093.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0094.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0095.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0096.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0097.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0098.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0099.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0100.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0101.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0102.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0103.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0104.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0105.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0106.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0107.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0108.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0109.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0110.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0111.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0112.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0113.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0114.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0115.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0116.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0117.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0118.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0119.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0120.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0121.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0122.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Premium Double Warp-kanji sarees/IMG-20250126-WA0123.jpg" onclick="openZoom(this.src, 'Premium Double Warp-kanji sareesDes')">
+            <span class="image-price">₹2000</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery8">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0172.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0173.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0174.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0175.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0176.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0177.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0178.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
-        <img src="Images/RIch Cotton Saree/IMG-20250126-WA0179.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0172.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0173.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0174.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0175.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0176.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0177.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0178.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/RIch Cotton Saree/IMG-20250126-WA0179.jpg" onclick="openZoom(this.src, 'Rich Cotton SareeDes')">
+            <span class="image-price">₹1050</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery9">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0226.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0227.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0228.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0229.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0230.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0231.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0232.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0233.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0234.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0235.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0236.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0237.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0238.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
-        <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0239.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0226.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0227.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0228.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0229.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0230.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0231.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0232.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0233.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0234.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0235.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0236.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0237.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0238.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Soft silk saree- low budget/IMG-20250126-WA0239.jpg" onclick="openZoom(this.src, 'Soft silk saree- Affordable priceDes')">
+            <span class="image-price">₹600</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery10">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0045.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0046.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0047.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0048.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0049.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0050.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0051.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0052.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0053.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0054.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0055.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0056.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0057.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0058.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0059.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0060.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0061.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0062.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0063.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0064.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0065.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0066.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0067.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0068.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0069.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0070.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0071.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0072.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0073.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0074.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0075.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0076.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0077.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
-        <img src="Images/Two Work Sarees/IMG-20250126-WA0078.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0045.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0046.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0047.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0048.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0049.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0050.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0051.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0052.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0053.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0054.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0055.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0056.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0057.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0058.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0059.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0060.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0061.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0062.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0063.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0064.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0065.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0066.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0067.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0068.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0069.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0070.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0071.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0072.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0073.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0074.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0075.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0076.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0077.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Two Work Sarees/IMG-20250126-WA0078.jpg" onclick="openZoom(this.src, 'Two Work sareesDes')">
+            <span class="image-price">₹1000</span>
+        </div>
     </div>
 
     <div class="gallery-container" id="gallery11">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0150.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0151.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0152.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0153.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0154.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0155.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0156.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0157.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0158.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0159.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0160.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0161.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0162.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0163.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0164.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0165.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0166.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0167.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0168.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0169.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0170.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
-        <img src="Images/Vaira oosi design/IMG-20250126-WA0171.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0150.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0151.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0152.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0153.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0154.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0155.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0156.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0157.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0158.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0159.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0160.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0161.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0162.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0163.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0164.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0165.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0166.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0167.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0168.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0169.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0170.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/Vaira oosi design/IMG-20250126-WA0171.jpg" onclick="openZoom(this.src, 'Vaira oosi designDes')">
+            <span class="image-price">₹1200</span>
+        </div>
     </div>
     <div class="gallery-container" id="gallery12">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_081147_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_083634_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_083639_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125003_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125007_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125010_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125013_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125016_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125020_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125024_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125027_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125032_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
-        <img src="Images/NATCHARA SOFT/Screenshot_20250202_125038_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_081147_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_083634_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_083639_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125003_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125007_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125010_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125013_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125016_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125020_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125024_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125027_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125032_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
+        <div class="image-container">
+            <img src="Images/NATCHARA SOFT/Screenshot_20250202_125038_WhatsApp.jpg" onclick="openZoom(this.src, 'Natchara SoftDes')">
+            <span class="image-price">₹1000</span>
+        </div>
     </div>
     <!-- Zoom Overlay -->
     <div id="imageOverlay">
@@ -639,7 +1471,6 @@
                 currentGalleryId = id;
                 const categoryIndex = Array.from(document.querySelectorAll('.categories span')).indexOf(clickedSpan);
 
-                // Remove existing close button if any
                 const existingCloseButton = selectedGallery.querySelector('.close-button-gallery');
                 if (existingCloseButton) {
                     selectedGallery.removeChild(existingCloseButton);
@@ -681,7 +1512,7 @@
         function toggleMenu() {
             const menu = document.getElementById('myMenu');
             menu.classList.toggle('show');
-           
+
         }
 
         function showHomeScreen() {
@@ -707,91 +1538,91 @@
         }
         const descriptions = {
             "Boomika sareeDes": `👉 Priced at just ₹550;
-                                                                     📍Silk based most affordable Sarees;
-                                                                     📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
-                                                                     📍Featuring fully pastel colours;
-                                                                     📍This limited-edition piece boasts a stylish contrast pallu;`,
+                                                                                                             📍Silk based most affordable Sarees;
+                                                                                                             📍Introducing a stunning new saree with a monochrome base and a striking contrast border;
+                                                                                                             📍Featuring fully pastel colours;
+                                                                                                             📍This limited-edition piece boasts a stylish contrast pallu;`,
             "Full work soft silk sareesDes": `👉 Special Price: Rs 1000;
-                                                                                  📍Full work SOFT SILK  SAREES;
-                                                                                  📍Fine art silk quality, soft silk material;
-                                                                                  📍Rich pallu & blouse with contrast;
-                                                                                  📍Small Zari work motif;
-                                                                                  📍Copper zari worked, smooth feel;
-                                                                                  📍Comfortable, lightweight, breathable, durable, versatile;
-                                                                                  📍Ideal for festivals, weddings, parties, casual drapes beautifully;
-                                                                                  📍100%  soft silk Sarees;`,
+                                                                                                                          📍Full work SOFT SILK  SAREES;
+                                                                                                                          📍Fine art silk quality, soft silk material;
+                                                                                                                          📍Rich pallu & blouse with contrast;
+                                                                                                                          📍Small Zari work motif;
+                                                                                                                          📍Copper zari worked, smooth feel;
+                                                                                                                          📍Comfortable, lightweight, breathable, durable, versatile;
+                                                                                                                          📍Ideal for festivals, weddings, parties, casual drapes beautifully;
+                                                                                                                          📍100%  soft silk Sarees;`,
             "Semi Kancheepuram silk sareesDes": `👉 Priced at just ₹2000;
-                                                                                  📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
-                                                                                  📍Pure Silk based Hologram design;
-                                                                                  📍With Best Complimentary Premium box packing For Saree;`,
+                                                                                                                          📍Semi Kanchipuram Silk Sarees powerloom  Exclusive Bridal Pattern;
+                                                                                                                          📍Pure Silk based Hologram design;
+                                                                                                                          📍With Best Complimentary Premium box packing For Saree;`,
             "Luxury soft silk sareesDes": `👉 SPECIAL PRICE ₹1500;
-                                                                                  📍LUXURY SOFT SILK;
-                                                                                  📍Pure Mix soft silk sarees;
-                                                                                  📍Double warp & luxury silk yarn mixed;
-                                                                                  📍Rich pallu with contrast blouse;
-                                                                                  📍All over putta work saree;
-                                                                                  📍Design border;
-                                                                                  📍1st quality pure pattu saree collection type;
-                                                                                  📍NOTE👉🏻 Dry wash only;
-                                                                                  📍#PURE PATTU SOFT SILK Double tone look;
-                                                                                  📍MARKET PRICE 8000+;`,
+                                                                                                                          📍LUXURY SOFT SILK;
+                                                                                                                          📍Pure Mix soft silk sarees;
+                                                                                                                          📍Double warp & luxury silk yarn mixed;
+                                                                                                                          📍Rich pallu with contrast blouse;
+                                                                                                                          📍All over putta work saree;
+                                                                                                                          📍Design border;
+                                                                                                                          📍1st quality pure pattu saree collection type;
+                                                                                                                          📍NOTE👉🏻 Dry wash only;
+                                                                                                                          📍#PURE PATTU SOFT SILK Double tone look;
+                                                                                                                          📍MARKET PRICE 8000+;`,
             "New Soft check silk sareesDes": `👉 Price: Rs 890;
-                                                                                  📍Art Silk in checked;
-                                                                                  📍Fully Motif Work;
-                                                                                  📍Full Body stone;
-                                                                                  📍High-Quality Materials;
-                                                                                  📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
+                                                                                                                          📍Art Silk in checked;
+                                                                                                                          📍Fully Motif Work;
+                                                                                                                          📍Full Body stone;
+                                                                                                                          📍High-Quality Materials;
+                                                                                                                          📍Soft and Comfortable Fabric Ensures All-Day Comfort;`,
             "Premium & royal soft silk sareesDes": `👉 Price: ₹900;
-                                                                                  📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
-                                                                                  📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
-                                                                                  📍Pairs with contrast  blouse;
-                                                                                  📍A exclusive boutique collection;`,
+                                                                                                                          📍Here is premium and royal soft silk sarees are a perfect blend of elegance and grandeur;.
+                                                                                                                          📍Made from premium quality  with dhana and silk concept, these sarees are soft, silky, and feature intricate circle and square work;
+                                                                                                                          📍Pairs with contrast  blouse;
+                                                                                                                          📍A exclusive boutique collection;`,
             "Premium Double Warp-kanji sareesDes": `👉 Special Sale :2000 Rs;
-                                                                                      📍Premium Double Warp;
-                                                                                      📍Semi kanchipuram Sarees;
-                                                                                      📍Handloom type made;
-                                                                                      📍Soft silk;
-                                                                                      📍Two jari work saree;
-                                                                                      📍Copper Jari;`,
+                                                                                                                              📍Premium Double Warp;
+                                                                                                                              📍Semi kanchipuram Sarees;
+                                                                                                                              📍Handloom type made;
+                                                                                                                              📍Soft silk;
+                                                                                                                              📍Two jari work saree;
+                                                                                                                              📍Copper Jari;`,
             "Rich Cotton SareeDes": `👉 Best Price ever : 1050 Rs;
-                                                                              📍Rich Cotton Saree;
-                                                                              📍Power loom;
-                                                                              📍Kotta cotton;
-                                                                              📍Rich pallu;
-                                                                              📍1St Quality;
-                                                                              📍Contrast border;
-                                                                              📍Contrast Blouse;`,
+                                                                                                                      📍Rich Cotton Saree;
+                                                                                                                      📍Power loom;
+                                                                                                                      📍Kotta cotton;
+                                                                                                                      📍Rich pallu;
+                                                                                                                      📍1St Quality;
+                                                                                                                      📍Contrast border;
+                                                                                                                      📍Contrast Blouse;`,
             "Soft silk saree- Affordable priceDes": `👉 Price:  600 Rs;
-                                                                                  📍Soft Silk Saree;
-                                                                                  📍Art silk weaving;
-                                                                                  📍Pure motif;
-                                                                                  📍Pink copper jari;
-                                                                                  📍Jacquard Border;
-                                                                                  📍Watt Butta saree;`,
+                                                                                                                          📍Soft Silk Saree;
+                                                                                                                          📍Art silk weaving;
+                                                                                                                          📍Pure motif;
+                                                                                                                          📍Pink copper jari;
+                                                                                                                          📍Jacquard Border;
+                                                                                                                          📍Watt Butta saree;`,
             "Two Work sareesDes": `👉 Best Price : 1000 Rs;
-                                                                      📍Bridal Silk Saree;
-                                                                      📍Two work saree;
-                                                                      📍Half and half model;
-                                                                      📍Two design Two colours in single sareee;
-                                                                      📍Art silk weaving;
-                                                                      📍Arni Made;
-                                                                      📍Fully processed;
-                                                                      📍Gold, copper jari;
-                                                                      📍Two weave;
-                                                                      📍Blouse and contrast pallu;`,
+                                                                                                              📍Bridal Silk Saree;
+                                                                                                              📍Two work saree;
+                                                                                                              📍Half and half model;
+                                                                                                              📍Two design Two colours in single sareee;
+                                                                                                              📍Art silk weaving;
+                                                                                                              📍Arni Made;
+                                                                                                              📍Fully processed;
+                                                                                                              📍Gold, copper jari;
+                                                                                                              📍Two weave;
+                                                                                                              📍Blouse and contrast pallu;`,
             "Vaira oosi designDes": `👉 Offer Price 1200 Rs;
-                                                                      📍Limited Edition Trending Vaira Oosi Design;
-                                                                      📍Luxurious soft silk saree;
-                                                                      📍Vibrant Motifs;
-                                                                      📍Rich pallu;
-                                                                      📍1St Quality;
-                                                                      📍Fine quality zari;
-                                                                      📍Contrast Blouse;
-                                                                      📍1/2 Warp Saree;
-                                                                      📍Perfect for Wedding Season;`,
+                                                                                                              📍Limited Edition Trending Vaira Oosi Design;
+                                                                                                              📍Luxurious soft silk saree;
+                                                                                                              📍Vibrant Motifs;
+                                                                                                              📍Rich pallu;
+                                                                                                              📍1St Quality;
+                                                                                                              📍Fine quality zari;
+                                                                                                              📍Contrast Blouse;
+                                                                                                              📍1/2 Warp Saree;
+                                                                                                              📍Perfect for Wedding Season;`,
             "Natchara SoftDes": `👉 Offer Price 1000 Rs;
-                                                                       📍Soft silk saree with zari putta work;
-                                                                       📍Contrast pallu and blouse;`,
+                                                                                                               📍Soft silk saree with zari putta work;
+                                                                                                               📍Contrast pallu and blouse;`,
         };
         const spans = document.querySelectorAll('.categories span');
         spans.forEach((span, index) => {
